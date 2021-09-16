@@ -16,6 +16,7 @@
 
 package sample.simple;
 
+import sample.simple.client.Client.IRun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -33,12 +34,21 @@ public class SampleSimpleApplication implements CommandLineRunner {
 	@Autowired
 	private HelloWorldService helloWorldService;
 
+	@Autowired
+	private IRun irun;
+
 	public void run(String... args) {
+
 		System.out.println(this.helloWorldService.getHelloMessage());
+		this.irun.run();
+
+	}
+
+	public void irun(String... args) {
 	}
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(SampleSimpleApplication.class, args);
+			SpringApplication.run(SampleSimpleApplication.class, args);
 	}
 	
 	
