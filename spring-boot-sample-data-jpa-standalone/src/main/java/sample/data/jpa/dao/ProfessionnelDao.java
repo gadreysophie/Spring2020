@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import domain.Departement;
-import domain.Professionnel;
+import sample.data.jpa.domain.Departement;
+import sample.data.jpa.domain.Professionnel;
 
 public class ProfessionnelDao {
 

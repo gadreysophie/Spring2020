@@ -1,7 +1,7 @@
 package sample.data.jpa.rest;
 
-import dao.UtilisateurDao;
-import domain.Utilisateur;
+import sample.data.jpa.dao.UtilisateurDao;
+import sample.data.jpa.domain.Utilisateur;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -8,8 +8,8 @@ import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import domain.*;
-import service.RdvService;
+import sample.data.jpa.domain.*;
+import sample.data.jpa.service.RdvService;
 
 public class RdvDao {
 

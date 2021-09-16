@@ -1,6 +1,6 @@
 package sample.data.jpa.dao;
 
-import domain.*;
+import sample.data.jpa.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

@@ -1,7 +1,7 @@
 package sample.data.jpa.rest;
 
-import dao.ProfessionnelDao;
-import domain.Professionnel;
+import sample.data.jpa.dao.ProfessionnelDao;
+import sample.data.jpa.domain.Professionnel;
 import io.swagger.v3.oas.annotations.Parameter;
 
 import javax.ws.rs.*;

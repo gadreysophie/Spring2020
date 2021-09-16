@@ -1,9 +1,10 @@
 package sample.data.jpa.rest;
 
-import dao.DepartementDao;
-import domain.Departement;
+import sample.data.jpa.dao.DepartementDao;
+import sample.data.jpa.domain.Departement;
 import io.swagger.v3.oas.annotations.Parameter;
 
+import javax.websocket.server.PathParam;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 

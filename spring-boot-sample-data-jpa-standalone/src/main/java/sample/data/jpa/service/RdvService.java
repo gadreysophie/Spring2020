@@ -1,10 +1,10 @@
 package sample.data.jpa.service;
 
-import dao.RdvDao;
-import dao.TypeRdvDao;
-import domain.Professionnel;
-import domain.Rdv;
-import domain.TypeRdv;
+import sample.data.jpa.dao.RdvDao;
+import sample.data.jpa.dao.TypeRdvDao;
+import sample.data.jpa.domain.Professionnel;
+import sample.data.jpa.domain.Rdv;
+import sample.data.jpa.domain.TypeRdv;
 
 import java.sql.Time;
 import java.util.*;

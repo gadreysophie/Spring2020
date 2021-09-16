@@ -1,7 +1,7 @@
 package sample.data.jpa.rest;
 
-import dao.RdvDao;
-import domain.Rdv;
+import sample.data.jpa.dao.RdvDao;
+import sample.data.jpa.domain.Rdv;
 import io.swagger.v3.oas.annotations.Parameter;
 
 import javax.ws.rs.*;

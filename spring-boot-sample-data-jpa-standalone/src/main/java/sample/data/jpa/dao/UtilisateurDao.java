@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import domain.Utilisateur;
+import sample.data.jpa.domain.Utilisateur;
 
 
 public class UtilisateurDao {

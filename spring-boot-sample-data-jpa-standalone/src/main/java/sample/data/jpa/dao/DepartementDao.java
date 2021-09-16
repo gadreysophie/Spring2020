@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import domain.Departement;
+import sample.data.jpa.domain.Departement;
 
 public class DepartementDao {
 

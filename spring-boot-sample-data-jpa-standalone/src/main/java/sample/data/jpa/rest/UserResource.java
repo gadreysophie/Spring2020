@@ -1,7 +1,7 @@
 package sample.data.jpa.rest;
 
-import dao.UtilisateurDao;
-import domain.Utilisateur;
+import sample.data.jpa.dao.UtilisateurDao;
+import sample.data.jpa.domain.Utilisateur;
 import io.swagger.v3.oas.annotations.Parameter;
 
 import javax.ws.rs.*;

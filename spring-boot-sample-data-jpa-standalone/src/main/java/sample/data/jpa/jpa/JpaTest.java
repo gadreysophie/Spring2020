@@ -1,6 +1,6 @@
 package sample.data.jpa.jpa;
 
-import dao.*;
+import sample.data.jpa.dao.*;
 
 import java.text.ParseException;
 

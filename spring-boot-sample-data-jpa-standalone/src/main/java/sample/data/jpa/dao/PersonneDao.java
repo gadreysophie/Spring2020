@@ -2,7 +2,7 @@ package sample.data.jpa.dao;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import domain.Personne;
+import sample.data.jpa.domain.Personne;
 
 public class PersonneDao {
 
