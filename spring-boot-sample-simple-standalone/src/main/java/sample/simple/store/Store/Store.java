@@ -15,4 +15,23 @@ public class Store implements IJustHaveALook, IFastLane, ILane {
     IBank iBank;
     @Autowired
     IProvider iProvider;
+
+
+
+    @Override
+    public void getProductInfo(String s) {
+        System.out.println(s);
+        this.iBank.transferMoney();
+    }
+
+    @Override
+    public void getPrice() {
+
+    }
+
+    @Override
+    public  Boolean isAvailable() {
+        return null;
+    }
+
 }

@@ -18,6 +18,8 @@ public class Client implements IRun {
     public void run() {
 
         System.out.println("c'est parti");
+        iJustHaveALook.getProductInfo("Product 1");
+
 
     }
 }
