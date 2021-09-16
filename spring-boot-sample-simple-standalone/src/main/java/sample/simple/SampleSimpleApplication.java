@@ -37,15 +37,12 @@ public class SampleSimpleApplication implements CommandLineRunner {
 	@Autowired
 	private IRun irun;
 
-	public void run(String... args) {
 
+	public void run(String... args) {
 		System.out.println(this.helloWorldService.getHelloMessage());
 		this.irun.run();
-
 	}
 
-	public void irun(String... args) {
-	}
 
 	public static void main(String[] args) throws Exception {
 			SpringApplication.run(SampleSimpleApplication.class, args);
