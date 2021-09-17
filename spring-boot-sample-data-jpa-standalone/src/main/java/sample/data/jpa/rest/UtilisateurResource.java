@@ -4,22 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.UtilisateurDao;
-import sample.data.jpa.domain.Professionnel;
 import sample.data.jpa.domain.Utilisateur;
-import io.swagger.v3.oas.annotations.Parameter;
 
 @RestController("/user")
-public class UserResource {
-
+public class UtilisateurResource {
     @Autowired
     UtilisateurDao utilisateurDao;
-
 
     @GetMapping(path="{/userId}",produces = "application/json")
     public Utilisateur getUserById(@PathVariable("userId") Long userId)  {
         return utilisateurDao.searchUserById(userId);
     }
-
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Utilisateur> addUser(@RequestBody Utilisateur user){
@@ -32,5 +27,4 @@ public class UserResource {
         utilisateurDao.delete(utilisateurDao.searchUserById(userId));
         return ResponseEntity.accepted().build();
     }
-
 }

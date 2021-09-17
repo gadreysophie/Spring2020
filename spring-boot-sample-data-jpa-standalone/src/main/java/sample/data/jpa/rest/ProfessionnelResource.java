@@ -8,7 +8,6 @@ import sample.data.jpa.domain.Professionnel;
 
 @RestController("/prof")
 public class ProfessionnelResource {
-
     @Autowired
     ProfessionnelDao professionnelDao;
 
@@ -22,7 +21,6 @@ public class ProfessionnelResource {
          @RequestBody Professionnel prof) {
         professionnelDao.save(prof);
         return ResponseEntity.ok(prof);
-
     }
 
     @DeleteMapping(path="/{profId}")
@@ -30,5 +28,4 @@ public class ProfessionnelResource {
         professionnelDao.delete(professionnelDao.searchProfessionnelById(profId));
         return ResponseEntity.accepted().build();
     }
-
 }

@@ -5,11 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.RdvDao;
 import sample.data.jpa.domain.Rdv;
-import sample.data.jpa.domain.Utilisateur;
 
 @RestController("/rdv")
 public class RdvResource {
-
     @Autowired
     RdvDao rdvDao;
 
@@ -30,5 +28,4 @@ public class RdvResource {
         rdvDao.delete(rdvDao.searchRdvById(rdvId));
         return ResponseEntity.accepted().build();
     }
-
 }
