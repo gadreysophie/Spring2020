@@ -9,8 +9,8 @@ import sample.data.jpa.domain.*;
 
 @Transactional
 public interface RdvDao extends JpaRepository<Rdv,Long> {
-    @Query("Select a From Rdv a")
-    public void listRdvs();
+    @Query("Select r From Rdv r")
+    public List<Rdv> listRdvs();
 
     @Query("SELECT r FROM Rdv r WHERE r.id =:id")
     public Rdv searchRdvById(@PathVariable("id") Long id);

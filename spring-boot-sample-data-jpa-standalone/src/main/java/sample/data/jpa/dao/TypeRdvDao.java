@@ -9,11 +9,12 @@ import java.util.List;
 
 @Transactional
 public interface TypeRdvDao extends JpaRepository<TypeRdv,Long> {
-    @Query("Select a From TypeRdv a")
-    public void listTypeRdvs() ;
+    @Query("Select t From TypeRdv t")
+    public List<TypeRdv> listTypeRdvs() ;
 
     @Query("SELECT t FROM TypeRdv t WHERE t.id =:id")
     public TypeRdv searchTypeRdvById(@PathVariable("id") Long id);
+
     @Query("SELECT t FROM TypeRdv t WHERE t.professionnel =:prof")
     public List<TypeRdv> listTypeRdvsParProf(@PathVariable("prof") Professionnel prof);
 
