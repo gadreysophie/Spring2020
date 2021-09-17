@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.RdvDao;
 import sample.data.jpa.domain.Rdv;
+import sample.data.jpa.dto.RdvsParProfessionnelEtDate;
+
 import java.util.List;
 
 @RestController()
@@ -22,6 +24,11 @@ public class RdvResource {
     @GetMapping(path="/listRdv",produces = "application/json")
     public List<Rdv> getRdvs()  {
         return rdvDao.listRdvs();
+    }
+
+    @GetMapping(path="/listRdvParProfEtDate/{rdvsParProfessionnelEtDate}",produces = "application/json")
+    public List<Rdv> getRdvsParProfEtDate(@PathVariable("rdvsParProfessionnelEtDate") RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate)  {
+        return rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate);
     }
 
 

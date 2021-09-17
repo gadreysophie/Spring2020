@@ -3,6 +3,7 @@ package sample.data.jpa.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import sample.data.jpa.domain.Professionnel;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class RdvsParProfessionnelEtDate {
 
     private Professionnel professionnel;
     private Date date;
+    private Date date2;
 
     @JsonProperty("Professionnel")
     public Professionnel getProfessionnel() { return professionnel; }
@@ -19,6 +21,18 @@ public class RdvsParProfessionnelEtDate {
     @JsonProperty("Date")
     public Date getDate() { return date; }
     @JsonProperty("Date")
-    public void setDate(Date value) { this.date = value; }
+    public void setDate(Date value) {
+        this.date = value;
+    }
+
+    @JsonProperty("Date2")
+    public Date getDate2() { return date2; }
+    @JsonProperty("Date2")
+    public void setDate2() {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, 1);
+        this.date2 = c.getTime();
+    }
 
 }

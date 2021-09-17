@@ -1,11 +1,14 @@
 package sample.data.jpa.service;
 
-import sample.data.jpa.dao.*;
 import sample.data.jpa.domain.Professionnel;
 import sample.data.jpa.domain.Rdv;
 import sample.data.jpa.domain.TypeRdv;
 import sample.data.jpa.domain.Utilisateur;
-
+import sample.data.jpa.dto.RdvsParProfessionnelEtDate;
+import sample.data.jpa.rest.ProfessionnelResource;
+import sample.data.jpa.rest.RdvResource;
+import sample.data.jpa.rest.TypeRdvResource;
+import sample.data.jpa.rest.UtilisateurResource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.sql.Time;
@@ -15,8 +18,7 @@ import java.util.*;
 
 public class RdvService {
 
-    static RdvDao rdvDao = new RdvDao();
-    private final EntityManager manager = EntityManagerHelper.getEntityManager();
+    private RdvResource rdvResource = new RdvResource();
 
     /**
      * Retourne la liste des disponibilités d'un professionnel
@@ -26,7 +28,7 @@ public class RdvService {
      * @param typeRdv Type de Rdv
      * @return la liste des créneaux disponibles par professionnel pour une date et par type de Rdv
      */
-    public static HashMap<Integer, List<Time>> listCreneauxDispo(Professionnel prof, Date date, TypeRdv typeRdv){
+    public HashMap<Integer, List<Time>> listCreneauxDispo(Professionnel prof, Date date, TypeRdv typeRdv){
         Calendar c = Calendar.getInstance();
         c.setTime(date);
 
@@ -38,12 +40,19 @@ public class RdvService {
         List<Time> tabDebutCreneauxDispo = new ArrayList<>();
         List<Time> tabFinCreneauxDispo = new ArrayList<>();
 
+
         String [] joursPresenceTab = prof.getJoursDePresence().split("(?!^)");
         if(joursPresenceTab[c.get(Calendar.DAY_OF_WEEK)-1].equals("1")){
-            List<Rdv> resultCreneauxRes = rdvDao.rdvsParProfessionnelEtDate(prof, date);
+
+            RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate = new RdvsParProfessionnelEtDate();
+            rdvsParProfessionnelEtDate.setProfessionnel(prof);
+            rdvsParProfessionnelEtDate.setDate(date);
+            rdvsParProfessionnelEtDate.setDate2();
+
+            List<Rdv> resultCreneauxRes = rdvResource.getRdvsParProfEtDate(rdvsParProfessionnelEtDate);
             Integer dureeTypeRdv = typeRdv.getDuree();
-            TypeRdvDao typeRdvDao = new TypeRdvDao();
-            Integer minDuree = typeRdvDao.minDureeTypeRdvByProf(prof);
+            TypeRdvResource typeRdvResource = new TypeRdvResource();
+            Integer minDuree = typeRdvResource.getMinDureeTypeRdvByProf(prof);
 
             // Generate liste de creneaux dispo
             tabDebutCreneauxDispoMatin.add(prof.getHeureDebut());
@@ -107,7 +116,7 @@ public class RdvService {
      * @param tabDebutCreneau tableau des heures de début des créneaux
      * @param tabFinCreneau tableau des heures de fin des créneaux
      */
-    private static void constructTabOfTempsLibre(Time debutRdv, Time finRdv, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
+    private void constructTabOfTempsLibre(Time debutRdv, Time finRdv, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
         Time time1;
         Time time2;
         Time tmp;
@@ -153,7 +162,7 @@ public class RdvService {
      * @param tabDebutCreneau tableau des heures de début des créneaux
      * @param tabFinCreneau tableau des heures de fin des créneaux
      */
-    private static void constructTabOfCreneaux(List<Time> tabDebutTempsLibre, List<Time> tabFinTempsLibre, Integer dureeRdv, Integer minduree, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
+    private void constructTabOfCreneaux(List<Time> tabDebutTempsLibre, List<Time> tabFinTempsLibre, Integer dureeRdv, Integer minduree, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
         for (int i = 0; i < tabDebutTempsLibre.size(); i++) {
             Time heureDebutTempsLibre = tabDebutTempsLibre.get(i);
             Time heureFinTempsLibre = tabFinTempsLibre.get(i);
@@ -178,72 +187,67 @@ public class RdvService {
     }
 
     public void createRdvs() throws ParseException {
-        int numOfRdvs = manager.createQuery("Select a From Rdv a", Rdv.class).getResultList().size();
+        int numOfRdvs = rdvResource.getRdvs().size();
         if (numOfRdvs == 0) {
-            ProfessionnelDao professionnelDao = new ProfessionnelDao();
-            UtilisateurDao utilisateurDao = new UtilisateurDao();
-            TypeRdvDao typeRdvDao = new TypeRdvDao();
+            ProfessionnelResource professionnelResource = new ProfessionnelResource();
+            UtilisateurResource utilisateurResource = new UtilisateurResource();
+            TypeRdvResource typeRdvResource = new TypeRdvResource();
 
-            Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
-            Utilisateur utilisateur = utilisateurDao.searchUserById(4L);
-            Utilisateur utilisateur2 = utilisateurDao.searchUserById(3L);
-            TypeRdv typeRdv = typeRdvDao.searchTypeRdvById(1L);
-            TypeRdv typeRdv2 = typeRdvDao.searchTypeRdvById(2L);
+            Professionnel professionnel = professionnelResource.getProfById(2L);
+            Utilisateur utilisateur = utilisateurResource.getUserById(4L);
+            Utilisateur utilisateur2 = utilisateurResource.getUserById(3L);
+            TypeRdv typeRdv = typeRdvResource.getTypeRdvById(1L);
+            TypeRdv typeRdv2 = typeRdvResource.getTypeRdvById(2L);
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-            EntityTransaction tx = manager.getTransaction();
-            tx.begin();
-            manager.persist(new Rdv(typeRdv, professionnel, utilisateur, dateFormat.parse("2021-10-29 11:30")));
-            manager.persist(new Rdv(typeRdv2, professionnel, utilisateur, dateFormat.parse("2021-10-29 14:30")));
-            manager.persist(new Rdv(typeRdv2, professionnel, utilisateur2, dateFormat.parse("2021-10-29 10:30")));
-            manager.persist(new Rdv(typeRdv, professionnel, utilisateur2, dateFormat.parse("2021-10-29 16:00")));
-            manager.persist(new Rdv(typeRdv, professionnel, utilisateur2, dateFormat.parse("2021-10-29 09:00")));
-            manager.persist(new Rdv(typeRdv, professionnel, utilisateur2, dateFormat.parse("2021-10-29 12:15")));
-            manager.persist(new Rdv(typeRdv, professionnel, utilisateur2, dateFormat.parse("2021-10-29 14:00")));
-            manager.persist(new Rdv(typeRdv2, professionnel, utilisateur2, dateFormat.parse("2021-10-29 16:30")));
-            tx.commit();
+
+            rdvResource.addRdv(new Rdv(typeRdv, professionnel, utilisateur, dateFormat.parse("2021-10-29 11:30")));
+            rdvResource.addRdv(new Rdv(typeRdv2, professionnel, utilisateur, dateFormat.parse("2021-10-29 14:30")));
+            rdvResource.addRdv(new Rdv(typeRdv2, professionnel, utilisateur2, dateFormat.parse("2021-10-29 10:30")));
+            rdvResource.addRdv(new Rdv(typeRdv, professionnel, utilisateur2, dateFormat.parse("2021-10-29 16:00")));
+            rdvResource.addRdv(new Rdv(typeRdv, professionnel, utilisateur2, dateFormat.parse("2021-10-29 09:00")));
+            rdvResource.addRdv(new Rdv(typeRdv, professionnel, utilisateur2, dateFormat.parse("2021-10-29 12:15")));
+            rdvResource.addRdv(new Rdv(typeRdv, professionnel, utilisateur2, dateFormat.parse("2021-10-29 14:00")));
+            rdvResource.addRdv(new Rdv(typeRdv2, professionnel, utilisateur2, dateFormat.parse("2021-10-29 16:30")));
         }
     }
 
-    public void addRdv (Rdv rdv){
-        EntityTransaction tx = manager.getTransaction();
-        tx.begin();
-        manager.persist(rdv);
-        tx.commit();
-    }
-
-    public void deleteRdvById (Long id){
-        EntityTransaction tx = manager.getTransaction();
-        tx.begin();
-        manager.remove(searchRdvById(id));
-        tx.commit();
-    }
-
     public void listRdvTest() throws ParseException {
-        ProfessionnelDao professionnelDao = new ProfessionnelDao();
-
-        Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
+        ProfessionnelResource professionnelResource = new ProfessionnelResource();
+        Professionnel professionnel = professionnelResource.getProfById(2L);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String dateDuJour = "2021-10-29";
-        List<Rdv> resultList = rdvsParProfessionnelEtDate(professionnel, dateFormat.parse(dateDuJour + " 00:00"));
+
+        RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate = new RdvsParProfessionnelEtDate();
+        rdvsParProfessionnelEtDate.setProfessionnel(professionnel);
+        rdvsParProfessionnelEtDate.setDate(dateFormat.parse(dateDuJour + " 00:00"));
+        rdvsParProfessionnelEtDate.setDate2();
+        List<Rdv> resultList = rdvResource.getRdvsParProfEtDate(rdvsParProfessionnelEtDate);
         System.out.println("\nNombre de rdvs au " + dateDuJour + " pour " + professionnel.getNom() + " " + professionnel.getPrenom() + ": " + resultList.size());
         for (Rdv next : resultList) {
             System.out.println("Rdv suivant : " + next);
         }
         System.out.println();
     }
-    public void testListCreneauxDispo() throws ParseException {
-        ProfessionnelDao professionnelDao = new ProfessionnelDao();
-        TypeRdvDao typeRdvDao = new TypeRdvDao();
 
-        Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
-        TypeRdv typeRdv = typeRdvDao.searchTypeRdvById(1L);
+    public void testListCreneauxDispo() throws ParseException {
+        ProfessionnelResource professionnelResource = new ProfessionnelResource();
+        TypeRdvResource typeRdvResource = new TypeRdvResource();
+        Professionnel professionnel = professionnelResource.getProfById(2L);
+        TypeRdv typeRdv = typeRdvResource.getTypeRdvById(1L);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String dateDuJour = "2021-10-29";
-        HashMap<Integer, List<Time>> creneauxDispo = RdvService.listCreneauxDispo(professionnel, dateFormat.parse(dateDuJour + " 00:00"), typeRdv);
+        HashMap<Integer, List<Time>> creneauxDispo = listCreneauxDispo(professionnel, dateFormat.parse(dateDuJour + " 00:00"), typeRdv);
         System.out.println("\nListe de créneaux disponibles pour le " + dateDuJour +" avec " + professionnel.getPrenom() + " " + professionnel.getNom() + " :");
         System.out.println(creneauxDispo);
     }
-
+//
+//    public List<Rdv> rdvsParProfessionnelEtDate(Professionnel prof, Date date){
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(date);
+//        c.add(Calendar.DATE, 1);
+//        return manager.createNamedQuery("tousLesRdvParProfEtDate").setParameter("prof", prof).
+//                setParameter("date",date).setParameter("date2",c.getTime()).getResultList();
+//    }
 }
