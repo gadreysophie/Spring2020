@@ -1,5 +1,7 @@
 package sample.data.jpa.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.UtilisateurDao;
 import sample.data.jpa.domain.Utilisateur;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -7,32 +9,29 @@ import io.swagger.v3.oas.annotations.Parameter;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-@Path("/user")
-@Produces({"application/json", "application/xml"})
+@RestController
 public class UserResource {
 
-    @GET
-    @Path("/{userId}")
-    public Utilisateur getUserById(@PathParam("userId") Long userId)  {
-        UtilisateurDao utilisateurDao = new UtilisateurDao();
+    @Autowired
+    UtilisateurDao utilisateurDao;
+
+    @GetMapping(path="{/userId}",produces = "application/json")
+    public Utilisateur getUserById(@PathVariable("userId") Long userId)  {
+       // UtilisateurDao utilisateurDao = new UtilisateurDao();
         return utilisateurDao.searchUserById(userId);
     }
 
-    @POST
-    @Consumes("application/json")
-    public Response addUser(
-            @Parameter(description = "User that needs to be added", required = true) Utilisateur user) {
-        UtilisateurDao utilisateurDao = new UtilisateurDao();
-        utilisateurDao.addUser(user);
-        return Response.ok().entity(user).build();
+
+    @PostMapping(consumes = "application/json")
+    public addUser(
+            @PathVariable("User that needs to be added") Utilisateur user) {
+        return utilisateurDao.addUser(user);;
     }
 
-    @DELETE
-    @Path("/{userId}")
-    public Response deleteUserById(@PathParam("userId") Long userId)  {
-        UtilisateurDao userDao = new UtilisateurDao();
-        userDao.deleteUserById(userId);
-        return Response.ok().build();
+    @DeleteMapping(path="/{userId}")
+    public deleteUserById(@PathVariable("userId") Long userId)  {
+
+        return  utilisateurDao.deleteUserById(userId);;
     }
 
 }
