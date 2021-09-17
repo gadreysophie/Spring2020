@@ -5,18 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import sample.data.jpa.domain.*;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import java.lang.reflect.Type;
 import java.util.List;
+
 @Transactional
 public interface TypeRdvDao extends JpaRepository<TypeRdv,Long> {
-
-
-
-
-
     @Query("Select a From TypeRdv a")
     public void listTypeRdvs() ;
 
@@ -27,5 +19,4 @@ public interface TypeRdvDao extends JpaRepository<TypeRdv,Long> {
 
     @Query("SELECT MIN(t.duree) FROM TypeRdv t WHERE t.professionnel =:prof")
     public Integer minDureeTypeRdvByProf(@PathVariable("prof") Professionnel prof);
-
 }
