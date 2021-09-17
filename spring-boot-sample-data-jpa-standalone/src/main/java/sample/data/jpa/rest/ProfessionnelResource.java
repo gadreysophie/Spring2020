@@ -1,39 +1,34 @@
 package sample.data.jpa.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.ProfessionnelDao;
 import sample.data.jpa.domain.Professionnel;
-import io.swagger.v3.oas.annotations.Parameter;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-
-@Path("/prof")
-@Produces({"application/json", "application/xml"})
+@RestController("/prof")
 public class ProfessionnelResource {
 
-    @GET
-    @Path("/{profId}")
-    public Professionnel getProfById(@PathParam("profId") Long profId)  {
-        ProfessionnelDao professionnelDao = new ProfessionnelDao();
+    @Autowired
+    ProfessionnelDao professionnelDao;
+
+    @GetMapping(path="{/profId}",produces = "application/json")
+    public Professionnel getProfById(@PathVariable("profId") Long profId)  {
         return professionnelDao.searchProfessionnelById(profId);
     }
 
-    @POST
-    @Consumes("application/json")
-    public Response addProfessionnel(
-            @Parameter(description = "Professionnel object that needs to be added to the store", required = true) Professionnel prof) {
-        ProfessionnelDao professionnelDao = new ProfessionnelDao();
-        professionnelDao.addProf(prof);
-        return Response.ok().entity(prof).build();
+    @PostMapping(consumes = "application/json")
+    public ResponseEntity<Professionnel> addProfessionnel(
+         @RequestBody Professionnel prof) {
+        professionnelDao.save(prof);
+        return ResponseEntity.ok(prof);
 
     }
 
-    @DELETE
-    @Path("/{profId}")
-    public Response deleteProfById(@PathParam("profId") Long profId)  {
-        ProfessionnelDao profDao = new ProfessionnelDao();
-        profDao.deleteProfById(profId);
-        return Response.ok().build();
+    @DeleteMapping(path="/{profId}")
+    public ResponseEntity<Void> deleteProfById(@PathVariable("profId") Long profId)  {
+        professionnelDao.delete(professionnelDao.searchProfessionnelById(profId));
+        return ResponseEntity.accepted().build();
     }
 
 }
