@@ -6,12 +6,14 @@ import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.DepartementDao;
 import sample.data.jpa.domain.Departement;
 
-@RestController("/dept")
+@RestController()
+@RequestMapping(path = "/dept")
+
 public class DepartementResource {
     @Autowired
     DepartementDao departementDao;
 
-    @GetMapping(path="{/deptId}",produces = "application/json")
+    @GetMapping(path="/{deptId}",produces = "application/json")
     public Departement getDepartementById(@PathVariable("deptId") Long deptId)  {
         return departementDao.searchDepartementById(deptId);
     }

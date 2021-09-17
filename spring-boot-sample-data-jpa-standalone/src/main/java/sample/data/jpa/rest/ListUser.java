@@ -1,11 +1,6 @@
 package sample.data.jpa.rest;
 
-import sample.data.jpa.dao.UtilisateurDao;
 import sample.data.jpa.domain.Utilisateur;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +13,12 @@ import java.io.PrintWriter;
 public class ListUser extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UtilisateurDao utilisateurDao = new UtilisateurDao();
+        UtilisateurResource utilisateurResource = new UtilisateurResource();
 
         response.setContentType("text/html");
 
         StringBuilder listUsers = new StringBuilder();
-        for (Utilisateur next : utilisateurDao.listUtilisateurs()) {
+        for (Utilisateur next : utilisateurResource.utilisateurDao.listUtilisateurs()) {
             listUsers.append(" <LI>Nom : ").append(next.getNom()).append(", Prénom : ").append(next.getPrenom());
         }
 
@@ -36,5 +31,4 @@ public class ListUser extends HttpServlet {
                 "</UL>\n"+
                 "</BODY></HTML>");
     }
-
 }

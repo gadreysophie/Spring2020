@@ -5,16 +5,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.RdvDao;
 import sample.data.jpa.domain.Rdv;
+import java.util.List;
 
-@RestController("/rdv")
+@RestController()
+@RequestMapping(path = "/rdv")
+
 public class RdvResource {
     @Autowired
     RdvDao rdvDao;
 
-    @GetMapping(path="{/rdvId}",produces = "application/json")
+    @GetMapping(path="/{rdvId}",produces = "application/json")
     public Rdv getRdvById(@PathVariable("rdvId") Long rdvId)  {
         return rdvDao.searchRdvById(rdvId);
     }
+
+    @GetMapping(path="/listRdv",produces = "application/json")
+    public List<Rdv> getRdvs()  {
+        return rdvDao.listRdvs();
+    }
+
+
+
+
+    //rajout rdvsParProfessionnelEtDate
+
+    // rajout liste créneaux dispo
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Rdv> addRdv(

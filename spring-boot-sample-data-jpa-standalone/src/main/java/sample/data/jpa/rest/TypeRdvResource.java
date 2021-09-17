@@ -8,22 +8,24 @@ import sample.data.jpa.domain.Professionnel;
 import sample.data.jpa.domain.TypeRdv;
 import java.util.List;
 
-@RestController("/typerdv")
+@RestController()
+@RequestMapping(path = "/typerdv")
+
 public class TypeRdvResource {
     @Autowired
     TypeRdvDao typeRdvDao;
 
-    @GetMapping(path="{/typeRdvId}",produces = "application/json")
+    @GetMapping(path="/{typeRdvId}",produces = "application/json")
     public TypeRdv getTypeRdvById(@PathVariable("typeRdvId") Long typeRdvId)  {
         return typeRdvDao.searchTypeRdvById(typeRdvId);
     }
 
-    @GetMapping(path="/minTypeRdv{/prof}",produces = "application/json")
+    @GetMapping(path="/minTypeRdv/{prof}",produces = "application/json")
     public Integer getMinDureeTypeRdvByProf(@PathVariable("prof") Professionnel professionnel)  {
         return typeRdvDao.minDureeTypeRdvByProf(professionnel);
     }
 
-    @GetMapping(path="/listTypeRdv{/prof}",produces = "application/json")
+    @GetMapping(path="/listTypeRdv/{prof}",produces = "application/json")
     public List<TypeRdv> getListTypeRdvsParProf(@PathVariable("prof") Professionnel professionnel)  {
         return typeRdvDao.listTypeRdvsParProf(professionnel);
     }

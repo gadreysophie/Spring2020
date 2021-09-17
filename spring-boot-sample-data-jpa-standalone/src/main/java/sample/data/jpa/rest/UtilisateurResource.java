@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.UtilisateurDao;
 import sample.data.jpa.domain.Utilisateur;
 
-@RestController("/user")
+@RestController()
+@RequestMapping(path = "/user")
 public class UtilisateurResource {
     @Autowired
     UtilisateurDao utilisateurDao;
 
-    @GetMapping(path="{/userId}",produces = "application/json")
+    @GetMapping(path="/{userId}",produces = "application/json")
     public Utilisateur getUserById(@PathVariable("userId") Long userId)  {
         return utilisateurDao.searchUserById(userId);
     }

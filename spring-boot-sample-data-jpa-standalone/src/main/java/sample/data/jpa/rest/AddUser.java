@@ -1,8 +1,6 @@
 package sample.data.jpa.rest;
 
-import sample.data.jpa.dao.UtilisateurDao;
 import sample.data.jpa.domain.Utilisateur;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +13,6 @@ import java.io.PrintWriter;
 public class AddUser extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UtilisateurDao userDao = new UtilisateurDao();
 
         // Création de l'objet utilisateur
         Utilisateur user = new Utilisateur();
@@ -23,7 +20,8 @@ public class AddUser extends HttpServlet {
         user.setPrenom(request.getParameter("prenom"));
 
         // Ajout données à la database
-        userDao.addUser(user);
+        UtilisateurResource userRessource = new UtilisateurResource();
+        userRessource.addUser(user);
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
