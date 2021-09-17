@@ -30,4 +30,5 @@ public class RdvResource {
         rdvDao.delete(rdvDao.searchRdvById(rdvId));
         return ResponseEntity.accepted().build();
     }
+
 }

@@ -14,6 +14,7 @@ public class UserResource {
     @Autowired
     UtilisateurDao utilisateurDao;
 
+
     @GetMapping(path="{/userId}",produces = "application/json")
     public Utilisateur getUserById(@PathVariable("userId") Long userId)  {
         return utilisateurDao.searchUserById(userId);

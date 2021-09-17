@@ -22,14 +22,14 @@ public class DepartementResource {
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Departement> addDepartement(
            @RequestBody Departement dept) {
-        departementDao.addDepartement(dept);
+        departementDao.save(dept);
         return ResponseEntity.ok(dept);
 
     }
 
     @DeleteMapping(path="/{deptId}")
     public ResponseEntity<Void> deleteDepartById(@PathVariable("deptId") Long deptId)  {
-        departementDao.deleteDepartById(deptId);
+        departementDao.delete(departementDao.searchDepartementById(deptId));
         return ResponseEntity.accepted().build();
     }
 }
