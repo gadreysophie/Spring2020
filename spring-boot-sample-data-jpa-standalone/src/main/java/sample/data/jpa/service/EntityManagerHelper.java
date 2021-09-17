@@ -1,4 +1,4 @@
-package sample.data.jpa.dao;
+package sample.data.jpa.service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
