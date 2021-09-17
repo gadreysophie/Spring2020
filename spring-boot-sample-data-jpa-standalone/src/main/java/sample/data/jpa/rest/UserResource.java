@@ -1,9 +1,12 @@
 package sample.data.jpa.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.UtilisateurDao;
+import sample.data.jpa.domain.Professionnel;
 import sample.data.jpa.domain.Utilisateur;
+import io.swagger.v3.oas.annotations.Parameter;
 
 @RestController("/user")
 public class UserResource {
@@ -18,13 +21,15 @@ public class UserResource {
 
 
     @PostMapping(consumes = "application/json")
-    public addUser(@PathVariable("user") Utilisateur user){
-        return utilisateurDao.save(user);
+    public ResponseEntity<Utilisateur> addUser(@RequestBody Utilisateur user){
+        utilisateurDao.save(user);
+        return ResponseEntity.ok(user);
     }
 
     @DeleteMapping(path="/{userId}")
-    public deleteUserById(@PathVariable("userId") Long userId)  {
-        return  utilisateurDao.remove(userId);
+    public ResponseEntity<Void>  deleteUserById(@PathVariable("userId") Long userId)  {
+        utilisateurDao.delete(utilisateurDao.searchUserById(userId));
+        return ResponseEntity.accepted().build();
     }
 
 }

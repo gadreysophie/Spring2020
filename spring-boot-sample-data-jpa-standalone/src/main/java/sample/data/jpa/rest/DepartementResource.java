@@ -2,9 +2,11 @@ package sample.data.jpa.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.DepartementDao;
 import sample.data.jpa.domain.Departement;
+import sample.data.jpa.domain.Rdv;
 
 @RestController("/dept")
 public class DepartementResource {
@@ -18,16 +20,16 @@ public class DepartementResource {
     }
 
     @PostMapping(consumes = "application/json")
-    public Response addDepartement(
-            @Param(description = "Departement object that needs to be added to the store", required = true) Departement dept) {
+    public ResponseEntity<Departement> addDepartement(
+           @RequestBody Departement dept) {
         departementDao.addDepartement(dept);
-        return Response.ok().entity(dept).build();
+        return ResponseEntity.ok(dept);
 
     }
 
     @DeleteMapping(path="/{deptId}")
-    public Response deleteDepartById(@PathVariable("deptId") Long deptId)  {
+    public ResponseEntity<Void> deleteDepartById(@PathVariable("deptId") Long deptId)  {
         departementDao.deleteDepartById(deptId);
-        return Response.ok().build();
+        return ResponseEntity.accepted().build();
     }
 }

@@ -1,9 +1,11 @@
 package sample.data.jpa.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.RdvDao;
 import sample.data.jpa.domain.Rdv;
+import sample.data.jpa.domain.Utilisateur;
 
 @RestController("/rdv")
 public class RdvResource {
@@ -17,17 +19,15 @@ public class RdvResource {
     }
 
     @PostMapping(consumes = "application/json")
-    public Response addRdv(
-            @Parameter(description = "Rdv object that needs to be added to the store", required = true) Rdv rdv) {
-        rdvDao.addRdv(rdv);
-        return Response.ok().entity(rdv).build();
+    public ResponseEntity<Rdv> addRdv(
+            @RequestBody Rdv rdv) {
+        rdvDao.save(rdv);
+        return ResponseEntity.ok(rdv);
     }
 
     @DeleteMapping(path="/{rdvId}")
-    public Response deleteRdvById(@PathVariable("rdvId") Long rdvId)  {
-        rdvDao.deleteRdvById(rdvId);
-        return Response.ok().build();
+    public ResponseEntity<Void>  deleteRdvById(@PathVariable("rdvId") Long rdvId)  {
+        rdvDao.delete(rdvDao.searchRdvById(rdvId));
+        return ResponseEntity.accepted().build();
     }
-
-
 }
