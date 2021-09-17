@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.UtilisateurDao;
+import sample.data.jpa.domain.Departement;
 import sample.data.jpa.domain.Utilisateur;
+
+import java.util.List;
 
 @RestController()
 @RequestMapping(path = "/user")
@@ -16,6 +19,12 @@ public class UtilisateurResource {
     public Utilisateur getUserById(@PathVariable("userId") Long userId)  {
         return utilisateurDao.searchUserById(userId);
     }
+
+    @GetMapping(path="/listUser",produces = "application/json")
+    public List<Utilisateur> getUsers()  {
+        return utilisateurDao.findAll();
+    }
+
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Utilisateur> addUser(@RequestBody Utilisateur user){

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.DepartementDao;
 import sample.data.jpa.domain.Departement;
+import java.util.List;
 
 @RestController()
 @RequestMapping(path = "/dept")
@@ -24,6 +25,11 @@ public class DepartementResource {
         departementDao.save(dept);
         return ResponseEntity.ok(dept);
 
+    }
+
+    @GetMapping(path="/listDept",produces = "application/json")
+    public List<Departement> getDepts()  {
+        return departementDao.findAll();
     }
 
     @DeleteMapping(path="/{deptId}")
