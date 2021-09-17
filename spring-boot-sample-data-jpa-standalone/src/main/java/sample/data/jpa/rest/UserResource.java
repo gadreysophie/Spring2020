@@ -23,9 +23,8 @@ public class UserResource {
 
 
     @PostMapping(consumes = "application/json")
-    public addUser(
-            @PathVariable("User that needs to be added") Utilisateur user) {
-        return utilisateurDao.addUser(user);;
+    public addUser(@PathVariable("user") Utilisateur user){
+        return utilisateurDao.save(user);
     }
 
     @DeleteMapping(path="/{userId}")
