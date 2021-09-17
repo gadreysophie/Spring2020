@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface ProfessionnelDao extends JpaRepository<Professionnel, Long> {
    @Query("Select p From Professionnel p")
-    public List<Professionnel> listProfessionnels() ;
+   List<Professionnel> listProfessionnels() ;
 
    @Query("SELECT p FROM Professionnel p WHERE p.nom LIKE CONCAT('%',:name,'%') ORDER BY p.nom")
-    public List<Professionnel> listProfessionnelsParNom (@PathVariable("name") String name);
+   List<Professionnel> listProfessionnelsParNom(@PathVariable("name") String name);
 
    @Query("SELECT p FROM Professionnel p WHERE p.id =:id")
-    public Professionnel searchProfessionnelById(@PathVariable("id") Long id);
+   Professionnel searchProfessionnelById(@PathVariable("id") Long id);
 }

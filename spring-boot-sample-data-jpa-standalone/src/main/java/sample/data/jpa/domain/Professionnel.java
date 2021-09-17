@@ -1,7 +1,6 @@
 package sample.data.jpa.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Time;
@@ -31,7 +30,6 @@ public class Professionnel extends Personne {
     private String joursDePresence;
 
     private List<TypeRdv> typeDeRdv;
-
 
     public Professionnel() {
     }
@@ -132,6 +130,5 @@ public class Professionnel extends Personne {
         return "Professionnel [id=" + getId() + ", nom=" + getNom() + ", prénom=" + getPrenom() + ", département="
                 + departement.getNom() + "]";
     }
-
 }
 

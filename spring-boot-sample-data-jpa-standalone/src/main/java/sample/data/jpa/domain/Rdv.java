@@ -1,12 +1,10 @@
 package sample.data.jpa.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Calendar;
 import java.util.Date;
-
 
 @Entity
 @XmlRootElement(name = "rdv")

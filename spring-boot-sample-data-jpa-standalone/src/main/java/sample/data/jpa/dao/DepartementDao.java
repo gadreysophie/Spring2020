@@ -7,5 +7,5 @@ import sample.data.jpa.domain.Departement;
 
 public interface DepartementDao extends JpaRepository<Departement, Long> {
     @Query("SELECT d FROM Departement d WHERE d.id =:id")
-    public Departement searchDepartementById(@PathVariable("id") Long id);
+    Departement searchDepartementById(@PathVariable("id") Long id);
 }

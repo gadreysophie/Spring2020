@@ -1,10 +1,7 @@
 package sample.data.jpa.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -53,7 +50,6 @@ public class Departement {
         return "Departement [id=" + id + ", nom=" + nom + "]";
     }
 
-
     @OneToMany(mappedBy = "departement", cascade = CascadeType.PERSIST)
     public List<Professionnel> getProfessionnels() {
         return professionnels;
@@ -62,6 +58,4 @@ public class Departement {
     public void setProfessionnels(List<Professionnel> professionnels) {
         this.professionnels = professionnels;
     }
-
-
 }

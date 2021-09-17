@@ -10,14 +10,14 @@ import java.util.List;
 @Transactional
 public interface TypeRdvDao extends JpaRepository<TypeRdv,Long> {
     @Query("Select t From TypeRdv t")
-    public List<TypeRdv> listTypeRdvs() ;
+    List<TypeRdv> listTypeRdvs() ;
 
     @Query("SELECT t FROM TypeRdv t WHERE t.id =:id")
-    public TypeRdv searchTypeRdvById(@PathVariable("id") Long id);
+    TypeRdv searchTypeRdvById(@PathVariable("id") Long id);
 
     @Query("SELECT t FROM TypeRdv t WHERE t.professionnel =:prof")
-    public List<TypeRdv> listTypeRdvsParProf(@PathVariable("prof") Professionnel prof);
+    List<TypeRdv> listTypeRdvsParProf(@PathVariable("prof") Professionnel prof);
 
     @Query("SELECT MIN(t.duree) FROM TypeRdv t WHERE t.professionnel =:prof")
-    public Integer minDureeTypeRdvByProf(@PathVariable("prof") Professionnel prof);
+    Integer minDureeTypeRdvByProf(@PathVariable("prof") Professionnel prof);
 }
