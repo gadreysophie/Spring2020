@@ -1,6 +1,5 @@
 package sample.data.jpa.service;
 
-import sample.data.jpa.dao.EntityManagerHelper;
 import sample.data.jpa.domain.Personne;
 import javax.persistence.EntityManager;
 import java.util.List;

@@ -1,27 +1,23 @@
 package sample.data.jpa.service;
 
-import sample.data.jpa.dao.EntityManagerHelper;
 import sample.data.jpa.domain.Departement;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import sample.data.jpa.rest.DepartementResource;
 import java.util.List;
 
 public class DepartementService {
-    private final EntityManager manager = EntityManagerHelper.getEntityManager();
+
+    private DepartementResource departementResource = new DepartementResource();
 
     public void createDepartements() {
-        int numOfDepartements = manager.createQuery("Select a From Departement a", Departement.class).getResultList().size();
+        int numOfDepartements = departementResource.getDepts().size();
         if (numOfDepartements == 0) {
-            EntityTransaction tx = manager.getTransaction();
-            tx.begin();
-            manager.persist(new Departement("Master 1 - CCN"));
-            manager.persist(new Departement("Master 2 - CCNa"));
-            tx.commit();
+            departementResource.addDepartement(new Departement("Master 1 - CCN"));
+            departementResource.addDepartement(new Departement("Master 2 - CCNa"));
         }
     }
 
     public void listDepartements() {
-        List<Departement> resultList = manager.createQuery("Select a From Departement a", Departement.class).getResultList();
+        List<Departement> resultList = departementResource.getDepts();
         System.out.println("\nNombre de départements : " + resultList.size());
         for (Departement next : resultList) {
             System.out.println("Département suivant : " + next);
