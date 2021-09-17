@@ -1,36 +1,30 @@
 package sample.data.jpa.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.RdvDao;
 import sample.data.jpa.domain.Rdv;
-import io.swagger.v3.oas.annotations.Parameter;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-
-@Path("/rdv")
-@Produces({"application/json", "application/xml"})
+@RestController("/rdv")
 public class RdvResource {
 
-    @GET
-    @Path("/{rdvId}")
-    public Rdv getRdvById(@PathParam("rdvId") Long rdvId)  {
-        RdvDao rdvDao = new RdvDao();
+    @Autowired
+    RdvDao rdvDao;
+
+    @GetMapping(path="{/rdvId}",produces = "application/json")
+    public Rdv getRdvById(@PathVariable("rdvId") Long rdvId)  {
         return rdvDao.searchRdvById(rdvId);
     }
 
-    @POST
-    @Consumes("application/json")
+    @PostMapping(consumes = "application/json")
     public Response addRdv(
             @Parameter(description = "Rdv object that needs to be added to the store", required = true) Rdv rdv) {
-        RdvDao rdvDao = new RdvDao();
         rdvDao.addRdv(rdv);
         return Response.ok().entity(rdv).build();
     }
 
-    @DELETE
-    @Path("/{rdvId}")
-    public Response deleteRdvById(@PathParam("rdvId") Long rdvId)  {
-        RdvDao rdvDao = new RdvDao();
+    @DeleteMapping(path="/{rdvId}")
+    public Response deleteRdvById(@PathVariable("rdvId") Long rdvId)  {
         rdvDao.deleteRdvById(rdvId);
         return Response.ok().build();
     }

@@ -4,12 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.UtilisateurDao;
 import sample.data.jpa.domain.Utilisateur;
-import io.swagger.v3.oas.annotations.Parameter;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-
-@RestController
+@RestController("/user")
 public class UserResource {
 
     @Autowired
@@ -17,7 +13,6 @@ public class UserResource {
 
     @GetMapping(path="{/userId}",produces = "application/json")
     public Utilisateur getUserById(@PathVariable("userId") Long userId)  {
-       // UtilisateurDao utilisateurDao = new UtilisateurDao();
         return utilisateurDao.searchUserById(userId);
     }
 
@@ -29,8 +24,7 @@ public class UserResource {
 
     @DeleteMapping(path="/{userId}")
     public deleteUserById(@PathVariable("userId") Long userId)  {
-
-        return  utilisateurDao.deleteUserById(userId);;
+        return  utilisateurDao.remove(userId);
     }
 
 }
