@@ -1,75 +1,31 @@
 package sample.data.jpa.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import sample.data.jpa.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.lang.reflect.Type;
 import java.util.List;
+@Transactional
+public interface TypeRdvDao extends JpaRepository<TypeRdv,Long> {
 
-public class TypeRdvDao {
 
-    private final EntityManager manager = EntityManagerHelper.getEntityManager();
 
-    public void createTypeRdvs() {
-        int numOfTypeRdvs = manager.createQuery("Select a From TypeRdv a", TypeRdv.class).getResultList().size();
-        if (numOfTypeRdvs == 0) {
-            ProfessionnelDao professionnelDao = new ProfessionnelDao();
 
-            Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
-            EntityTransaction tx = manager.getTransaction();
-            tx.begin();
-            manager.persist(new TypeRdv("Consultation", professionnel, 15));
-            manager.persist(new TypeRdv("Expertise", professionnel, 30));
-            tx.commit();
-        }
-    }
 
-    public void listTypeRdvTest() {
-        ProfessionnelDao professionnelDao = new ProfessionnelDao();
+    @Query("Select a From TypeRdv a")
+    public void listTypeRdvs() ;
 
-        Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
-        List<TypeRdv> resultList = listTypeRdvsParProf(professionnel);
-        System.out.println("\nNombre de type de rdv pour " + professionnel.getNom() + " " + professionnel.getPrenom() + ": " + resultList.size());
-        for (TypeRdv next : resultList) {
-            System.out.println("Type de rdv suivant : " + next);
-        }
-        System.out.println();
-    }
+    @Query("SELECT t FROM TypeRdv t WHERE t.id =:id")
+    public TypeRdv searchTypeRdvById(@PathVariable("id") Long id);
+    @Query("SELECT t FROM TypeRdv t WHERE t.professionnel =:prof")
+    public List<TypeRdv> listTypeRdvsParProf(@PathVariable("prof") Professionnel prof);
 
-    public void listTypeRdvs() {
-        List<TypeRdv> resultList = manager.createQuery("Select a From TypeRdv a", TypeRdv.class).getResultList();
-        System.out.println("\nNombre de TypeRdvs :" + resultList.size());
-        for (TypeRdv next : resultList) {
-            System.out.println("TypeRdv suivant : " + next);
-        }
-        System.out.println();
-    }
-
-    public TypeRdv searchTypeRdvById(Long id){
-        return (TypeRdv) manager.createNamedQuery("typeRdvParId").setParameter("id", id).getSingleResult();
-
-    }
-
-    public List<TypeRdv> listTypeRdvsParProf(Professionnel prof) {
-        return manager.createNamedQuery("tousLesTypeRdvParProf").setParameter("prof", prof).getResultList();
-    }
-
-    public void addTypeRdv (TypeRdv typeRdv){
-        EntityTransaction tx = manager.getTransaction();
-        tx.begin();
-        manager.persist(typeRdv);
-        tx.commit();
-    }
-
-    public void deleteTypeRdvById (Long id){
-        EntityTransaction tx = manager.getTransaction();
-        tx.begin();
-        manager.remove(searchTypeRdvById(id));
-        tx.commit();
-    }
-
-    public Integer minDureeTypeRdvByProf(Professionnel prof){
-        return (Integer) manager.createNamedQuery("minDureeTypeRdvByProf").setParameter("prof", prof).getSingleResult();
-    }
+    @Query("SELECT MIN(t.duree) FROM TypeRdv t WHERE t.professionnel =:prof")
+    public Integer minDureeTypeRdvByProf(@PathVariable("prof") Professionnel prof);
 
 }
