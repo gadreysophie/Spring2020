@@ -5,6 +5,7 @@ import sample.data.jpa.domain.Professionnel;
 import sample.data.jpa.rest.DepartementResource;
 import sample.data.jpa.rest.ProfessionnelResource;
 import java.sql.Time;
+import java.util.List;
 
 public class ProfessionnelService {
     private ProfessionnelResource professionnelResource = new ProfessionnelResource();
@@ -23,5 +24,14 @@ public class ProfessionnelService {
                     "mbousse", departement2, Time.valueOf("9:00:00"), Time.valueOf("17:00:00"), Time.valueOf("12:30:00"),
                     Time.valueOf("14:00:00"),"1110110"));
         }
+    }
+
+    public void listProfessionnels() {
+        List<Professionnel> resultList = professionnelResource.getProfs();
+        System.out.println("\nNombre de professionnels : " + resultList.size());
+        for (Professionnel next : resultList) {
+            System.out.println("Professionnel suivant : " + next);
+        }
+        System.out.println();
     }
 }

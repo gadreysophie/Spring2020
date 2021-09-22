@@ -29,7 +29,7 @@ public class DepartementResource {
 
     @GetMapping(path="/listDept",produces = "application/json")
     public List<Departement> getDepts()  {
-        return departementDao.findAll();
+        return departementDao.listDepartements();
     }
 
     @DeleteMapping(path="/{deptId}")
