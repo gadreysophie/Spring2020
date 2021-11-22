@@ -1,27 +1,25 @@
 package sample.data.jpa.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import sample.data.jpa.dao.UtilisateurDao;
 import sample.data.jpa.domain.Utilisateur;
-import sample.data.jpa.rest.UtilisateurResource;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import java.util.List;
 
 public class UtilisateurService {
 
-    private UtilisateurResource utilisateurResource = new UtilisateurResource();
-
+    @Autowired
+    UtilisateurDao utilisateurDao;
     public void createUtilisateurs() {
-        int numOfUsers = utilisateurResource.getUsers().size();
+        int numOfUsers = utilisateurDao.listUtilisateurs().size();
         if (numOfUsers == 0) {
 
-            utilisateurResource.addUser(new Utilisateur("Gadrey","Sophie","sgadrey","sgadrey@univrennes.fr","sgadrey"));
-            utilisateurResource.addUser(new Utilisateur("Le Chenadec","Erwann","elechenadec","elechenadec@univrennes.fr","elechenadec"));
+            utilisateurDao.save(new Utilisateur("Gadrey","Sophie","sgadrey","sgadrey@univrennes.fr","sgadrey"));
+            utilisateurDao.save(new Utilisateur("Le Chenadec","Erwann","elechenadec","elechenadec@univrennes.fr","elechenadec"));
         }
     }
 
     public void printListUtilisateurs() {
-        List<Utilisateur> resultList = utilisateurResource.getUsers();
+        List<Utilisateur> resultList = utilisateurDao.listUtilisateurs();
         System.out.println("\nNombre d'utilisateurs : " + resultList.size());
         for (Utilisateur next : resultList) {
             System.out.println("Utilisateur suivant : " + next);

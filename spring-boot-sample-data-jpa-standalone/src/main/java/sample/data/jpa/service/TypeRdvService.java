@@ -1,32 +1,35 @@
 package sample.data.jpa.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import sample.data.jpa.dao.ProfessionnelDao;
+import sample.data.jpa.dao.TypeRdvDao;
 import sample.data.jpa.domain.Professionnel;
 import sample.data.jpa.domain.TypeRdv;
 import sample.data.jpa.rest.ProfessionnelResource;
-import sample.data.jpa.rest.TypeRdvResource;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import java.util.List;
 
 public class TypeRdvService {
 
-    private TypeRdvResource typeRdvResource = new TypeRdvResource();
+    @Autowired
+    TypeRdvDao typeRdvDao;
+
+    @Autowired
+    ProfessionnelDao professionnelDao;
 
     public void createTypeRdvs() {
-        int numOfTypeRdvs = typeRdvResource.getTypeRdvs().size();
+        int numOfTypeRdvs = typeRdvDao.listTypeRdvs().size();
         if (numOfTypeRdvs == 0) {
             ProfessionnelResource professionnelResource = new ProfessionnelResource();
             Professionnel professionnel = professionnelResource.getProfById(2L);
-            typeRdvResource.addTypeRdv(new TypeRdv("Consultation", professionnel, 15));
-            typeRdvResource.addTypeRdv(new TypeRdv("Expertise", professionnel, 30));
+            typeRdvDao.save(new TypeRdv("Consultation", professionnel, 15));
+            typeRdvDao.save(new TypeRdv("Expertise", professionnel, 30));
         }
     }
 
     public void listTypeRdvTest() {
-        TypeRdvResource typeRdvResource = new TypeRdvResource();
-        ProfessionnelResource professionnelResource = new ProfessionnelResource();
-        Professionnel professionnel = professionnelResource.getProfById(2L);
-        List<TypeRdv> resultList = typeRdvResource.getListTypeRdvsParProf(professionnel);
+
+        Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
+        List<TypeRdv> resultList = typeRdvDao.listTypeRdvsParProf(professionnel);
         System.out.println("\nNombre de type de rdv pour " + professionnel.getNom() + " " + professionnel.getPrenom() + ": " + resultList.size());
         for (TypeRdv next : resultList) {
             System.out.println("Type de rdv suivant : " + next);
@@ -35,7 +38,7 @@ public class TypeRdvService {
     }
 
     public void listTypeRdvs() {
-        List<TypeRdv> resultList = typeRdvResource.getTypeRdvs();
+        List<TypeRdv> resultList = typeRdvDao.listTypeRdvs();
         System.out.println("\nNombre de TypeRdvs :" + resultList.size());
         for (TypeRdv next : resultList) {
             System.out.println("TypeRdv suivant : " + next);
