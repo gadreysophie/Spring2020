@@ -45,7 +45,7 @@ public class TypeRdvResource {
     @DeleteMapping(path="/{typeRdvId}")
     public ResponseEntity<Void>  deleteTypeRdvById(@PathVariable("typeRdvId") Long typeRdvId)  {
         typeRdvDao.delete(typeRdvDao.searchTypeRdvById(typeRdvId));
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.ok().build();
     }
 }
 

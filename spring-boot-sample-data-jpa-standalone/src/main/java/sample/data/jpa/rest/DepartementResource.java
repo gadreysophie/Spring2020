@@ -35,6 +35,6 @@ public class DepartementResource {
     @DeleteMapping(path="/{deptId}")
     public ResponseEntity<Void> deleteDepartById(@PathVariable("deptId") Long deptId)  {
         departementDao.delete(departementDao.searchDepartementById(deptId));
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.ok().build();
     }
 }

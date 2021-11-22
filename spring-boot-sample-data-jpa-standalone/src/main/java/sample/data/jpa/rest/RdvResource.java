@@ -31,11 +31,6 @@ public class RdvResource {
         return rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate);
     }
 
-
-
-
-    //rajout rdvsParProfessionnelEtDate
-
     // rajout liste créneaux dispo
 
     @PostMapping(consumes = "application/json")
@@ -48,6 +43,6 @@ public class RdvResource {
     @DeleteMapping(path="/{rdvId}")
     public ResponseEntity<Void>  deleteRdvById(@PathVariable("rdvId") Long rdvId)  {
         rdvDao.delete(rdvDao.searchRdvById(rdvId));
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.ok().build();
     }
 }

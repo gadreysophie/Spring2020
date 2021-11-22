@@ -38,6 +38,6 @@ public class ProfessionnelResource {
     @DeleteMapping(path="/{profId}")
     public ResponseEntity<Void> deleteProfById(@PathVariable("profId") Long profId)  {
         professionnelDao.delete(professionnelDao.searchProfessionnelById(profId));
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.ok().build();
     }
 }

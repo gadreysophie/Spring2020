@@ -35,6 +35,6 @@ public class UtilisateurResource {
     @DeleteMapping(path="/{userId}")
     public ResponseEntity<Void>  deleteUserById(@PathVariable("userId") Long userId)  {
         utilisateurDao.delete(utilisateurDao.searchUserById(userId));
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.ok().build();
     }
 }
