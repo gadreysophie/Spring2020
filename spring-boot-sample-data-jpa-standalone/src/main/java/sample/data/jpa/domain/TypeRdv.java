@@ -2,6 +2,7 @@ package sample.data.jpa.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,8 @@ public class TypeRdv {
     }
 
     @Id
-    @GeneratedValue(generator="idTypeRdv")
+    @GeneratedValue(generator="generatorIdTypeRdv")
+    @XmlElement(name = "id")
     public Long getId() {
         return id;
     }
