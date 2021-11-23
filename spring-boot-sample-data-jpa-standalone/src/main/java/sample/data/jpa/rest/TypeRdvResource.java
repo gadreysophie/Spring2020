@@ -27,23 +27,23 @@ public class TypeRdvResource {
     }
 
     /**
-     * to get the minimum length of the rdv of the professional
-     * @param professionnel the professional
-     * @return the length of the type of rdv
+     * to get the minimum length of a rdv for a professionnal
+     * @param profId the professional id
+     * @return the length of a rdv for the professionnal
      */
-    @GetMapping(path="/minTypeRdv/{prof}",produces = "application/json")
-    public Integer getMinDureeTypeRdvByProf(@PathVariable("prof") Professionnel professionnel)  {
-        return typeRdvDao.minDureeTypeRdvByProf(professionnel);
+    @GetMapping(path="/minTypeRdv/{profId}",produces = "application/json")
+    public Integer getMinDureeTypeRdvByProfId(@PathVariable("profId") Long profId)  {
+        return typeRdvDao.minDureeTypeRdvByProf(profId);
     }
 
     /**
      * to get the list of type of rdv by professional
-     * @param professionnel the professional
-     * @return the list of type of rdv by professional
+     * @param profId the professional id
+     * @return the list of type of rdv for this professional
      */
-    @GetMapping(path="/listTypeRdv/{prof}",produces = "application/json")
-    public List<TypeRdv> getListTypeRdvsParProf(@PathVariable("prof") Professionnel professionnel)  {
-        return typeRdvDao.listTypeRdvsParProf(professionnel);
+    @GetMapping(path="/listTypeRdv/{profId}",produces = "application/json")
+    public List<TypeRdv> getListTypeRdvsParProfId(@PathVariable("profId") Long profId)  {
+        return typeRdvDao.listTypeRdvsParProf(profId);
     }
 
     /**

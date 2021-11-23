@@ -35,7 +35,7 @@ public class TypeRdvService {
     public void listTypeRdvTest() {
 
         Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
-        List<TypeRdv> resultList = typeRdvDao.listTypeRdvsParProf(professionnel);
+        List<TypeRdv> resultList = typeRdvDao.listTypeRdvsParProf(professionnel.getId());
         System.out.println("\nNombre de type de rdv pour " + professionnel.getNom() + " " + professionnel.getPrenom() + ": " + resultList.size());
         for (TypeRdv next : resultList) {
             System.out.println("Type de rdv suivant : " + next);

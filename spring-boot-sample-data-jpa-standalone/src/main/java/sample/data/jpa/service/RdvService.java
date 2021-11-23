@@ -59,7 +59,7 @@ public class RdvService {
 
             List<Rdv> resultCreneauxRes = rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate);
             Integer dureeTypeRdv = typeRdv.getDuree();
-            Integer minDuree = typeRdvDao.minDureeTypeRdvByProf(prof);
+            Integer minDuree = typeRdvDao.minDureeTypeRdvByProf(prof.getId());
 
             // Generate liste de creneaux dispo
             tabDebutCreneauxDispoMatin.add(prof.getHeureDebut());

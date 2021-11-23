@@ -16,9 +16,9 @@ public interface TypeRdvDao extends JpaRepository<TypeRdv,Long> {
     @Query("SELECT t FROM TypeRdv t WHERE t.id =:id")
     TypeRdv searchTypeRdvById(@Param("id") Long id);
 
-    @Query("SELECT t FROM TypeRdv t WHERE t.professionnel =:prof")
-    List<TypeRdv> listTypeRdvsParProf(@Param("prof") Professionnel prof);
+    @Query("SELECT t FROM TypeRdv t WHERE t.professionnel.id =:profId")
+    List<TypeRdv> listTypeRdvsParProf(@Param("profId") Long profId);
 
-    @Query("SELECT MIN(t.duree) FROM TypeRdv t WHERE t.professionnel =:prof")
-    Integer minDureeTypeRdvByProf(@Param("prof") Professionnel prof);
+    @Query("SELECT MIN(t.duree) FROM TypeRdv t WHERE t.professionnel.id =:profId")
+    Integer minDureeTypeRdvByProf(@Param("profId") Long profId);
 }
