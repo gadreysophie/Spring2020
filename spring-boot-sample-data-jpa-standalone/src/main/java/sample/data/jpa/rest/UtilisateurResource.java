@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.UtilisateurDao;
-import sample.data.jpa.domain.Departement;
 import sample.data.jpa.domain.Utilisateur;
 
 import java.util.List;
