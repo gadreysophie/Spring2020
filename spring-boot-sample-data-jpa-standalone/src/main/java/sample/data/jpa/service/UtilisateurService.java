@@ -3,12 +3,16 @@ package sample.data.jpa.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import sample.data.jpa.dao.UtilisateurDao;
 import sample.data.jpa.domain.Utilisateur;
+import sample.data.jpa.rest.UtilisateurResource;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
 public class UtilisateurService {
 
-    @Autowired
-    UtilisateurDao utilisateurDao;
+    private UtilisateurResource utilisateurResource = new UtilisateurResource();
+
     public void createUtilisateurs() {
         int numOfUsers = utilisateurDao.listUtilisateurs().size();
         if (numOfUsers == 0) {
@@ -18,6 +22,9 @@ public class UtilisateurService {
         }
     }
 
+    /**
+     * to get the list of database
+     */
     public void printListUtilisateurs() {
         List<Utilisateur> resultList = utilisateurDao.listUtilisateurs();
         System.out.println("\nNombre d'utilisateurs : " + resultList.size());

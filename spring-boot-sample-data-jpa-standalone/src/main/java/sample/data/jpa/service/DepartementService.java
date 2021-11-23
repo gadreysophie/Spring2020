@@ -8,6 +8,9 @@ public class DepartementService {
 
     private DepartementResource departementResource = new DepartementResource();
 
+    /**
+     * to create department on the database
+     */
     public void createDepartements() {
         int numOfDepartements = departementResource.getDepts().size();
         if (numOfDepartements == 0) {
@@ -16,6 +19,9 @@ public class DepartementService {
         }
     }
 
+    /**
+     * to get the list of department
+     */
     public void listDepartements() {
         List<Departement> resultList = departementResource.getDepts();
         System.out.println("\nNombre de départements : " + resultList.size());

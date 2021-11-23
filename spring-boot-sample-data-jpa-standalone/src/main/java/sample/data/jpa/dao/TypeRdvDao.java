@@ -9,6 +9,7 @@ import java.util.List;
 
 @Transactional
 public interface TypeRdvDao extends JpaRepository<TypeRdv,Long> {
+
     @Query("Select t From TypeRdv t")
     List<TypeRdv> listTypeRdvs() ;
 

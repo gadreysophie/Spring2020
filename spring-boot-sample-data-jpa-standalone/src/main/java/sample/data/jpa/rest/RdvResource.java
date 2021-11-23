@@ -13,18 +13,34 @@ import java.util.List;
 @RequestMapping(path = "/rdv")
 
 public class RdvResource {
+
     @Autowired
     RdvDao rdvDao;
 
+    /**
+     * to get the rdv by the id
+     * @param rdvId the id of the rdv
+     * @return the rdv
+     */
     @GetMapping(path="/{rdvId}",produces = "application/json")
     public Rdv getRdvById(@PathVariable("rdvId") Long rdvId)  {
         return rdvDao.searchRdvById(rdvId);
     }
 
+    /**
+     * to get the list of rdv from the database
+     * @return the list of rdv
+     */
     @GetMapping(path="/listRdv",produces = "application/json")
     public List<Rdv> getRdvs()  {
         return rdvDao.listRdvs();
     }
+
+    /**
+     * to get a rdv by the date and the professional
+     * @param rdvsParProfessionnelEtDate the date and professional
+     * @return a list of rdv by date and professional
+     */
 
     @GetMapping(path="/listRdvParProfEtDate/{rdvsParProfessionnelEtDate}",produces = "application/json")
     public List<Rdv> getRdvsParProfEtDate(@PathVariable("rdvsParProfessionnelEtDate") RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate)  {
@@ -33,6 +49,11 @@ public class RdvResource {
 
     // rajout liste créneaux dispo
 
+    /**
+     * to add a rdv on the database
+     * @param rdv the rdv
+     * @return the http response to get the status of the request
+     */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Rdv> addRdv(
             @RequestBody Rdv rdv) {
@@ -40,6 +61,11 @@ public class RdvResource {
         return ResponseEntity.ok(rdv);
     }
 
+    /**
+     * to delete a rdv by the id
+     * @param rdvId the id of the rdv
+     * @return the http response to get the status of the request
+     */
     @DeleteMapping(path="/{rdvId}")
     public ResponseEntity<Void>  deleteRdvById(@PathVariable("rdvId") Long rdvId)  {
         rdvDao.delete(rdvDao.searchRdvById(rdvId));

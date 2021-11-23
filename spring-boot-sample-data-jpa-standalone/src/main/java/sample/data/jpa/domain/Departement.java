@@ -13,10 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
         }
 )
 public class Departement {
+
     private Long id;
-
     private String nom;
-
     private List<Professionnel> professionnels = new ArrayList<>();
 
     public Departement() {

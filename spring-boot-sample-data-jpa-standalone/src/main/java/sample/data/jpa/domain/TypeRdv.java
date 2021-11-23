@@ -18,14 +18,11 @@ import java.util.List;
 )
 
 public class TypeRdv {
+
     private Long id;
-
     private String nom;
-
     private Professionnel professionnel;
-
     private Integer duree;
-
     private List<Rdv> rdvs = new ArrayList<>();
 
     public TypeRdv() {

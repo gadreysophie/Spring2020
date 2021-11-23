@@ -10,6 +10,7 @@ import sample.data.jpa.dto.RdvsParProfessionnelEtDate;
 
 @Transactional
 public interface RdvDao extends JpaRepository<Rdv,Long> {
+
     @Query("Select r From Rdv r")
     List<Rdv> listRdvs();
 

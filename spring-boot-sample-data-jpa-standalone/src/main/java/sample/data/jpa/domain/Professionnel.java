@@ -19,16 +19,13 @@ import java.util.List;
 public class Professionnel extends Personne {
 
     private Departement departement;
-
     private List<Rdv> rdvs = new ArrayList<>();
-
     private Time heureDebut;
     private Time heureFin;
     private Time heureDebutPause;
     private Time heureFinPause;
     // Attention : du dimanche au samedi
     private String joursDePresence;
-
     private List<TypeRdv> typeDeRdv;
 
     public Professionnel() {

@@ -30,12 +30,11 @@ public class RdvService {
     UtilisateurDao utilisateurDao;
 
     /**
-     * Retourne la liste des disponibilités d'un professionnel
-     * en fonction de ses créneaux disponibles enregistrés
-     * @param prof Professionnel
+     * To get the list of availabilities of a professional in function of his saved availabilities
+     * @param prof Professional
      * @param date Date
-     * @param typeRdv Type de Rdv
-     * @return la liste des créneaux disponibles par professionnel pour une date et par type de Rdv
+     * @param typeRdv Type of Rdv
+     * @return the list of availabilities by professional for a date and type of rdv
      */
     public HashMap<Integer, List<Time>> listCreneauxDispo(Professionnel prof, Date date, TypeRdv typeRdv){
         Calendar c = Calendar.getInstance();
@@ -118,11 +117,11 @@ public class RdvService {
     }
 
     /**
-     * Construit le tableau des disponibilités du professionnel
-     * @param debutRdv heure de début du rdv
-     * @param finRdv heure de fin du rdv
-     * @param tabDebutCreneau tableau des heures de début des créneaux
-     * @param tabFinCreneau tableau des heures de fin des créneaux
+     * Build the table of availabilities of the professional
+     * @param debutRdv begin hour of the rdv
+     * @param finRdv end hour of the rdv
+     * @param tabDebutCreneau table of the begin hours
+     * @param tabFinCreneau table of the end hours
      */
     private void constructTabOfTempsLibre(Time debutRdv, Time finRdv, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
         Time time1;
@@ -162,13 +161,13 @@ public class RdvService {
     }
 
     /**
-     * Construit le tableau des disponibilités d'un professionnel en fonction de la duree d'un rdv
-     * @param tabDebutTempsLibre tableau de l'heure de début de la disponibilité
-     * @param tabFinTempsLibre tableau de l'heure de fin de la disponibilité
-     * @param dureeRdv durée du rdv
-     * @param minduree minimum de la duree des rdv d'un professionnel
-     * @param tabDebutCreneau tableau des heures de début des créneaux
-     * @param tabFinCreneau tableau des heures de fin des créneaux
+     * Build the table of availabilities for a professional in function of the length of a rdv
+     * @param tabDebutTempsLibre table of the begin date of availability
+     * @param tabFinTempsLibre table of the end date of the availability
+     * @param dureeRdv length of the rdv
+     * @param minduree minimum of the length of the rdv by professional
+     * @param tabDebutCreneau table of the begin dates
+     * @param tabFinCreneau table of the end dates
      */
     private void constructTabOfCreneaux(List<Time> tabDebutTempsLibre, List<Time> tabFinTempsLibre, Integer dureeRdv, Integer minduree, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
         for (int i = 0; i < tabDebutTempsLibre.size(); i++) {
@@ -194,6 +193,10 @@ public class RdvService {
         }
     }
 
+    /**
+     * To create a rdv on the database for example
+     * @throws ParseException
+     */
     public void createRdvs() throws ParseException {
         int numOfRdvs = rdvDao.listRdvs().size();
         if (numOfRdvs == 0) {
@@ -218,6 +221,10 @@ public class RdvService {
         }
     }
 
+    /**
+     * to get the list of rdv for example
+     * @throws ParseException
+     */
     public void listRdvTest() throws ParseException {
         Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -235,6 +242,10 @@ public class RdvService {
         System.out.println();
     }
 
+    /**
+     * the list of availabilities
+     * @throws ParseException
+     */
     public void testListCreneauxDispo() throws ParseException {
         Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
         TypeRdv typeRdv = typeRdvDao.searchTypeRdvById(1L);

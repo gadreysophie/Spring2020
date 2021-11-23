@@ -9,6 +9,7 @@ import sample.data.jpa.domain.Utilisateur;
 
 @Transactional
 public interface UtilisateurDao extends JpaRepository<Utilisateur, Long> {
+
     @Query("Select u From Utilisateur u")
     List<Utilisateur> listUtilisateurs();
 

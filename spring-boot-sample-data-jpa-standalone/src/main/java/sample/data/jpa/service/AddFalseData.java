@@ -6,6 +6,10 @@ import java.text.ParseException;
 
 public class AddFalseData {
 
+    /**
+     * to add example data on the database
+     * @param args
+     */
     public static void main(String[] args) {
         ProfessionnelService professionnelService = new ProfessionnelService();
         DepartementService departementService = new DepartementService();

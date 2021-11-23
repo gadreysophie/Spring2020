@@ -12,6 +12,12 @@ import java.io.PrintWriter;
         urlPatterns={"/AddUser"})
 public class AddUser extends HttpServlet {
 
+    /**
+     * to add an user in the database
+     * @param request the http request
+     * @param response the http response
+     * @throws IOException
+     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         // Création de l'objet utilisateur
@@ -19,7 +25,7 @@ public class AddUser extends HttpServlet {
         user.setNom(request.getParameter("nom"));
         user.setPrenom(request.getParameter("prenom"));
 
-        // Ajout données à la database
+        // Ajout de données à la database
         UtilisateurResource userRessource = new UtilisateurResource();
         userRessource.addUser(user);
 

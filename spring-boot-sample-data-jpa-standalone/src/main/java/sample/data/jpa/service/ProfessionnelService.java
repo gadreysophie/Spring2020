@@ -15,6 +15,9 @@ public class ProfessionnelService {
     @Autowired
     DepartementDao departementDao;
 
+    /**
+     * to create professionals on the database
+     */
     public void createProfessionnels() {
         int numOfEmployees = professionnelDao.listProfessionnels().size();
         if (numOfEmployees == 0) {
@@ -30,6 +33,9 @@ public class ProfessionnelService {
         }
     }
 
+    /**
+     * to get the list of professionals
+     */
     public void listProfessionnels() {
         List<Professionnel> resultList = professionnelDao.listProfessionnels();
         System.out.println("\nNombre de professionnels : " + resultList.size());

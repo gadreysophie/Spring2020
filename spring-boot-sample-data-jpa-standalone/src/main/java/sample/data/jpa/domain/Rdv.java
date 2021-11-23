@@ -16,16 +16,12 @@ import java.util.Date;
 )
 
 public class Rdv {
+
     private Long id;
-
     private TypeRdv typeRdv;
-
     private Professionnel professionnel;
-
     private Utilisateur utilisateur;
-
     private Date dateDebut;
-
     private Date dateFin;
 
     public Rdv() {

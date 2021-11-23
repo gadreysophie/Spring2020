@@ -7,6 +7,7 @@ import sample.data.jpa.domain.Professionnel;
 import java.util.List;
 
 public interface ProfessionnelDao extends JpaRepository<Professionnel, Long> {
+
    @Query("Select p From Professionnel p")
    List<Professionnel> listProfessionnels() ;
 
