@@ -55,7 +55,6 @@ public class Professionnel extends Personne {
     }
 
     @ManyToOne
-    @JsonIgnore
     public Departement getDepartement() {
         return departement;
     }
@@ -65,6 +64,7 @@ public class Professionnel extends Personne {
     }
 
     @OneToMany(mappedBy = "professionnel", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     public List<Rdv> getRdvs() {
         return rdvs;
     }
@@ -114,6 +114,7 @@ public class Professionnel extends Personne {
     }
 
     @OneToMany(mappedBy = "professionnel", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     public List<TypeRdv> getTypeDeRdv() {
         return typeDeRdv;
     }

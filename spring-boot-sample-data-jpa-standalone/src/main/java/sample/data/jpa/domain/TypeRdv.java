@@ -62,7 +62,6 @@ public class TypeRdv {
     }
 
     @ManyToOne
-    @JsonIgnore
     public Professionnel getProfessionnel() {
         return professionnel;
     }
@@ -72,6 +71,7 @@ public class TypeRdv {
     }
 
     @OneToMany(mappedBy = "typeRdv", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     public List<Rdv> getRdvs() {
         return rdvs;
     }

@@ -1,5 +1,6 @@
 package sample.data.jpa.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -50,6 +51,7 @@ public class Departement {
     }
 
     @OneToMany(mappedBy = "departement", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     public List<Professionnel> getProfessionnels() {
         return professionnels;
     }

@@ -1,6 +1,5 @@
 package sample.data.jpa.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Calendar;
@@ -50,7 +49,6 @@ public class Rdv {
     }
 
     @ManyToOne
-    @JsonIgnore
     public TypeRdv getTypeRdv() {
         return typeRdv;
     }
@@ -60,7 +58,6 @@ public class Rdv {
     }
 
     @ManyToOne
-    @JsonIgnore
     public Professionnel getProfessionnel() {
         return professionnel;
     }
@@ -70,7 +67,6 @@ public class Rdv {
     }
 
     @ManyToOne
-    @JsonIgnore
     public Utilisateur getUtilisateur() {
         return utilisateur;
     }
