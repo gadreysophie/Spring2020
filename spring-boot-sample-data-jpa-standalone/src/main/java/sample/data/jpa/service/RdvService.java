@@ -36,7 +36,7 @@ public class RdvService {
      * @param typeRdv Type of Rdv
      * @return the list of availabilities by professional for a date and type of rdv
      */
-    public HashMap<Integer, List<Time>> listCreneauxDispo(Professionnel prof, Date date, TypeRdv typeRdv){
+    public HashMap<Integer, List<Time>> listCreneauxDispoTest(Professionnel prof, Date date, TypeRdv typeRdv){
         Calendar c = Calendar.getInstance();
         c.setTime(date);
 
@@ -167,7 +167,7 @@ public class RdvService {
      * To create a rdv on the database for example
      * @throws ParseException exception
      */
-    public void createRdvs() throws ParseException {
+    public void createFalseRdvs() throws ParseException {
         int numOfRdvs = rdvDao.listRdvs().size();
         if (numOfRdvs == 0) {
 
@@ -213,12 +213,12 @@ public class RdvService {
      * the list of availabilities
      * @throws ParseException exception
      */
-    public void testListCreneauxDispo() throws ParseException {
+    public void listCreneauxDispoTest() throws ParseException {
         Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
         TypeRdv typeRdv = typeRdvDao.searchTypeRdvById(1L);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String dateDuJour = "2021-10-29";
-        HashMap<Integer, List<Time>> creneauxDispo = listCreneauxDispo(professionnel, dateFormat.parse(dateDuJour + " 00:00"), typeRdv);
+        HashMap<Integer, List<Time>> creneauxDispo = listCreneauxDispoTest(professionnel, dateFormat.parse(dateDuJour + " 00:00"), typeRdv);
         System.out.println("\nListe de créneaux disponibles pour le " + dateDuJour +" avec " + professionnel.getPrenom() + " " + professionnel.getNom() + " :");
         System.out.println(creneauxDispo);
     }

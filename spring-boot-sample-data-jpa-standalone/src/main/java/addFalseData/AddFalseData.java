@@ -16,24 +16,23 @@ public class AddFalseData {
         TypeRdvService typeRdvService = new TypeRdvService();
 
         try {
-            departementService.createDepartements();
+            departementService.createFalseDepartements();
 
-            professionnelService.createProfessionnels();
+            professionnelService.createFalseProfessionnels();
 
-            utilisateurService.createUtilisateurs();
+            utilisateurService.createFalseUtilisateurs();
 
-            typeRdvService.createTypeRdvs();
+            typeRdvService.createFalseTypeRdvs();
 
-            rdvService.createRdvs();
+            rdvService.createFalseRdvs();
 
-            //professionnelService.listProfessionnelsParNom("Prof");
-            professionnelService.listProfessionnels();
-            departementService.listDepartements();
-            utilisateurService.printListUtilisateurs();
+            professionnelService.listProfessionnelsTest();
+            departementService.listDepartementsTest();
+            utilisateurService.listUtilisateursTest();
             rdvService.listRdvTest();
-            typeRdvService.listTypeRdvs();
-            typeRdvService.listTypeRdvTest();
-            rdvService.testListCreneauxDispo();
+            typeRdvService.listTypeRdvsTest();
+            typeRdvService.listTypeRdvParProfTest();
+            rdvService.listCreneauxDispoTest();
 
         } catch (ParseException e) {
             e.printStackTrace();

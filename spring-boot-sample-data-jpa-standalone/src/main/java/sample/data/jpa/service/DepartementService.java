@@ -1,29 +1,31 @@
 package sample.data.jpa.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import sample.data.jpa.dao.DepartementDao;
 import sample.data.jpa.domain.Departement;
-import sample.data.jpa.rest.DepartementResource;
 import java.util.List;
 
 public class DepartementService {
 
-    private DepartementResource departementResource = new DepartementResource();
+    @Autowired
+    DepartementDao departementDao;
 
     /**
      * to create department on the database
      */
-    public void createDepartements() {
-        int numOfDepartements = departementResource.getDepts().size();
+    public void createFalseDepartements() {
+        int numOfDepartements = departementDao.listDepartements().size();
         if (numOfDepartements == 0) {
-            departementResource.addDepartement(new Departement("Master 1 - CCN"));
-            departementResource.addDepartement(new Departement("Master 2 - CCNa"));
+            departementDao.save(new Departement("Master 1 - CCN"));
+            departementDao.save(new Departement("Master 2 - CCNa"));
         }
     }
 
     /**
      * to get the list of department
      */
-    public void listDepartements() {
-        List<Departement> resultList = departementResource.getDepts();
+    public void listDepartementsTest() {
+        List<Departement> resultList = departementDao.listDepartements();
         System.out.println("\nNombre de départements : " + resultList.size());
         for (Departement next : resultList) {
             System.out.println("Département suivant : " + next);

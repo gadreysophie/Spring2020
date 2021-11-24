@@ -19,7 +19,7 @@ public class TypeRdvService {
     /**
      * to create a type of rdv on the database
      */
-    public void createTypeRdvs() {
+    public void createFalseTypeRdvs() {
         int numOfTypeRdvs = typeRdvDao.listTypeRdvs().size();
         if (numOfTypeRdvs == 0) {
             ProfessionnelResource professionnelResource = new ProfessionnelResource();
@@ -32,7 +32,7 @@ public class TypeRdvService {
     /**
      * to get the list of type of rdv by professional
      */
-    public void listTypeRdvTest() {
+    public void listTypeRdvParProfTest() {
 
         Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
         List<TypeRdv> resultList = typeRdvDao.listTypeRdvsParProf(professionnel.getId());
@@ -46,7 +46,7 @@ public class TypeRdvService {
     /**
      * to get the list of type of rdv
      */
-    public void listTypeRdvs() {
+    public void listTypeRdvsTest() {
         List<TypeRdv> resultList = typeRdvDao.listTypeRdvs();
         System.out.println("\nNombre de TypeRdvs :" + resultList.size());
         for (TypeRdv next : resultList) {
