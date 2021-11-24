@@ -96,7 +96,7 @@ public class RdvService {
      * Build the table of availabilities of the professional
      * @param debutRdv begin hour of the rdv
      * @param finRdv end hour of the rdv
-     * @param tabDebutCreneau table of the begin hours
+     * @param tabDebutCreneau table of the beginning hours
      * @param tabFinCreneau table of the end hours
      */
     private void constructTabOfTempsLibre(Time debutRdv, Time finRdv, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
@@ -132,11 +132,11 @@ public class RdvService {
 
     /**
      * Build the table of availabilities for a professional in function of the length of a rdv
-     * @param tabDebutTempsLibre table of the begin date of availability
+     * @param tabDebutTempsLibre table of the beginning date of availability
      * @param tabFinTempsLibre table of the end date of the availability
      * @param dureeRdv length of the rdv
      * @param minduree minimum of the length of the rdv by professional
-     * @param tabDebutCreneau table of the begin dates
+     * @param tabDebutCreneau table of the beginning dates
      * @param tabFinCreneau table of the end dates
      */
     private void constructTabOfCreneaux(List<Time> tabDebutTempsLibre, List<Time> tabFinTempsLibre, Integer dureeRdv, Integer minduree, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
