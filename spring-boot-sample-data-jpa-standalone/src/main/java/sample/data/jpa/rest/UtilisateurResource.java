@@ -46,7 +46,7 @@ public class UtilisateurResource {
     }
 
     /**
-     * to delete an user from the database
+     * to delete a user from the database
      * @param userId the id of the user
      * @return the http response to get the status of the request
      */
