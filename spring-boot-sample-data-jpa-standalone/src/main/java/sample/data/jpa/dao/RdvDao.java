@@ -17,6 +17,6 @@ public interface RdvDao extends JpaRepository<Rdv,Long> {
     @Query("SELECT r FROM Rdv r WHERE r.id =:id")
     Rdv searchRdvById(@Param("id") Long id);
 
-    @Query("SELECT r FROM Rdv r WHERE r.professionnel=?1 AND  r.dateDebut >=?2 AND r.dateFin <=?3")
-    List<Rdv> rdvsParProfessionnelEtDate(@Param("dto") RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate );
+    @Query("SELECT r FROM Rdv r WHERE r.professionnel.id=:profId AND  r.dateDebut >=:dateDeb AND r.dateFin <=:dateFin")
+    List<Rdv> rdvsParProfessionnelEtDate(@Param("profId") Long profId, @Param("dateDeb") Date dateDeb, @Param("dateFin") Date dateFin);
 }

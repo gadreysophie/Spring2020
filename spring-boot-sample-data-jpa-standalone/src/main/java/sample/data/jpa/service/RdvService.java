@@ -52,12 +52,9 @@ public class RdvService {
         String [] joursPresenceTab = prof.getJoursDePresence().split("(?!^)");
         if(joursPresenceTab[c.get(Calendar.DAY_OF_WEEK)-1].equals("1")){
 
-            RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate = new RdvsParProfessionnelEtDate();
-            rdvsParProfessionnelEtDate.setProfessionnel(prof);
-            rdvsParProfessionnelEtDate.setDate(date);
-            rdvsParProfessionnelEtDate.setDate2();
+            RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate = new RdvsParProfessionnelEtDate(prof, date);
 
-            List<Rdv> resultCreneauxRes = rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate);
+            List<Rdv> resultCreneauxRes = rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate.getProfessionnel().getId(), rdvsParProfessionnelEtDate.getDate(), rdvsParProfessionnelEtDate.getDate2());
             Integer dureeTypeRdv = typeRdv.getDuree();
             Integer minDuree = typeRdvDao.minDureeTypeRdvByProf(prof.getId());
 
@@ -230,11 +227,8 @@ public class RdvService {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String dateDuJour = "2021-10-29";
 
-        RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate = new RdvsParProfessionnelEtDate();
-        rdvsParProfessionnelEtDate.setProfessionnel(professionnel);
-        rdvsParProfessionnelEtDate.setDate(dateFormat.parse(dateDuJour + " 00:00"));
-        rdvsParProfessionnelEtDate.setDate2();
-        List<Rdv> resultList = rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate);
+        RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate = new RdvsParProfessionnelEtDate(professionnel, dateFormat.parse(dateDuJour + " 00:00"));
+        List<Rdv> resultList = rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate.getProfessionnel().getId(), rdvsParProfessionnelEtDate.getDate(), rdvsParProfessionnelEtDate.getDate2());
         System.out.println("\nNombre de rdvs au " + dateDuJour + " pour " + professionnel.getNom() + " " + professionnel.getPrenom() + ": " + resultList.size());
         for (Rdv next : resultList) {
             System.out.println("Rdv suivant : " + next);

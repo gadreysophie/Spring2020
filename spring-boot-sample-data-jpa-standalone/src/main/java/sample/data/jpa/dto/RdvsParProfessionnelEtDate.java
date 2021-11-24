@@ -11,6 +11,13 @@ public class RdvsParProfessionnelEtDate {
     private Date date;
     private Date date2;
 
+    public RdvsParProfessionnelEtDate(){}
+
+    public RdvsParProfessionnelEtDate(Professionnel professionnel, Date date){
+        this.professionnel = professionnel;
+        this.date = date;
+    }
+
     @JsonProperty("Professionnel")
     public Professionnel getProfessionnel() { return professionnel; }
 
@@ -26,7 +33,7 @@ public class RdvsParProfessionnelEtDate {
     }
 
     @JsonProperty("Date2")
-    public Date getDate2() { return date2; }
+    public Date getDate2() { setDate2(); return date2; }
 
     @JsonProperty("Date2")
     public void setDate2() {
