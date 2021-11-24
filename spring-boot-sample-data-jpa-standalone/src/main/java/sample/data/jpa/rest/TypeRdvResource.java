@@ -26,9 +26,9 @@ public class TypeRdvResource {
     }
 
     /**
-     * to get the minimum length of a rdv for a professionnal
+     * to get the minimum length of a rdv for a professional
      * @param profId the professional id
-     * @return the length of a rdv for the professionnal
+     * @return the length of a rdv for the professional
      */
     @GetMapping(path="/minTypeRdv/{profId}",produces = "application/json")
     public Integer getMinDureeTypeRdvByProfId(@PathVariable("profId") Long profId)  {

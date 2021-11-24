@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 public class AddUser extends HttpServlet {
 
     /**
-     * to add an user in the database
+     * to add a user in the database
      * @param request the http request
      * @param response the http response
      * @throws IOException exception
