@@ -42,7 +42,7 @@ public class RdvResource {
      * @return a list of rdv by date and professional
      */
 
-    @GetMapping(path="/listRdvParProfEtDate/",produces = "application/json")
+    @GetMapping(path="/listRdvParProfEtDate/", produces = "application/json")
     public List<Rdv> getRdvsParProfEtDate(@RequestBody RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate)  {
         return rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate.getProfessionnel().getId(), rdvsParProfessionnelEtDate.getDate(), rdvsParProfessionnelEtDate.getDate2());
     }

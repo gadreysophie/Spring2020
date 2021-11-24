@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import sample.data.jpa.domain.*;
-import sample.data.jpa.dto.RdvsParProfessionnelEtDate;
 
 @Transactional
 public interface RdvDao extends JpaRepository<Rdv,Long> {

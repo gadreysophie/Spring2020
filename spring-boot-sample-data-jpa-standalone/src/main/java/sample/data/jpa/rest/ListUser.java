@@ -16,7 +16,7 @@ public class ListUser extends HttpServlet {
      * to get the list of User in the database
      * @param request the http request
      * @param response the http response
-     * @throws IOException
+     * @throws IOException exception
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         UtilisateurResource utilisateurResource = new UtilisateurResource();

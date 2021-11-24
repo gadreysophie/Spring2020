@@ -16,7 +16,7 @@ public class AddUser extends HttpServlet {
      * to add an user in the database
      * @param request the http request
      * @param response the http response
-     * @throws IOException
+     * @throws IOException exception
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 

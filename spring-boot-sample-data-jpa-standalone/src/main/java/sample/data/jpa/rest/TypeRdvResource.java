@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.TypeRdvDao;
-import sample.data.jpa.domain.Professionnel;
 import sample.data.jpa.domain.TypeRdv;
 import java.util.List;
 
@@ -57,7 +56,7 @@ public class TypeRdvResource {
 
     /**
      * to add a type of rdv on the database
-     * @param typeRdv
+     * @param typeRdv type of rdv
      * @return the http response to get the status of the request
      */
     @PostMapping(consumes = "application/json")

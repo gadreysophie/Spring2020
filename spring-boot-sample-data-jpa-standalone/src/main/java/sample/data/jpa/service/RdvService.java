@@ -48,7 +48,6 @@ public class RdvService {
         List<Time> tabDebutCreneauxDispo = new ArrayList<>();
         List<Time> tabFinCreneauxDispo = new ArrayList<>();
 
-
         String [] joursPresenceTab = prof.getJoursDePresence().split("(?!^)");
         if(joursPresenceTab[c.get(Calendar.DAY_OF_WEEK)-1].equals("1")){
 
@@ -65,7 +64,6 @@ public class RdvService {
             tabFinCreneauxDispoAprem.add(prof.getHeureFin());
 
             for (Rdv next : resultCreneauxRes) {
-
                 Calendar calendar1 = GregorianCalendar.getInstance();
                 calendar1.setTime(next.getDateDebut());
                 Time debutRdv = Time.valueOf(calendar1.get(Calendar.HOUR_OF_DAY)+":"+calendar1.get(Calendar.MINUTE)+":00");
@@ -74,33 +72,15 @@ public class RdvService {
                 calendar2.setTime(next.getDateFin());
                 Time finRdv = Time.valueOf(calendar2.get(Calendar.HOUR_OF_DAY)+":"+calendar2.get(Calendar.MINUTE)+":00");
 
-//                System.out.println("\nRDV suivant : " + next);
-//                System.out.println("Début rdv : "+debutRdv);
-//                System.out.println("Fin rdv : "+finRdv);
-
                 if(finRdv.before(prof.getHeureFinPause()) || finRdv.equals(prof.getHeureFinPause())) {
                     constructTabOfTempsLibre(debutRdv, finRdv, tabDebutCreneauxDispoMatin, tabFinCreneauxDispoMatin);
-//                    System.out.println(tabDebutCreneauxDispoMatin);
-//                    System.out.println(tabFinCreneauxDispoMatin);
                 }else{
                     constructTabOfTempsLibre(debutRdv, finRdv, tabDebutCreneauxDispoAprem, tabFinCreneauxDispoAprem);
-//                    System.out.println(tabDebutCreneauxDispoAprem);
-//                    System.out.println(tabFinCreneauxDispoAprem);
                 }
             }
             constructTabOfCreneaux(tabDebutCreneauxDispoMatin, tabFinCreneauxDispoMatin, dureeTypeRdv, minDuree, tabDebutCreneauxDispo, tabFinCreneauxDispo);
             constructTabOfCreneaux(tabDebutCreneauxDispoAprem, tabFinCreneauxDispoAprem, dureeTypeRdv, minDuree, tabDebutCreneauxDispo, tabFinCreneauxDispo);
         }
-
-//        System.out.println("\nTemps libre : ");
-//        System.out.println(tabDebutCreneauxDispoMatin);
-//        System.out.println(tabFinCreneauxDispoMatin);
-//        System.out.println(tabDebutCreneauxDispoAprem);
-//        System.out.println(tabFinCreneauxDispoAprem);
-
-//        System.out.println("\nCréneaux disponibles : ");
-//        System.out.println(tabDebutCreneauxDispo);
-//        System.out.println(tabFinCreneauxDispo);
 
         HashMap<Integer, List<Time>> creneauxDispo = new HashMap<>();
         for (int i = 0; i < tabDebutCreneauxDispo.size(); i++) {
@@ -110,7 +90,6 @@ public class RdvService {
             creneauxDispo.put(i,listTime);
         }
         return creneauxDispo;
-
     }
 
     /**
@@ -127,15 +106,9 @@ public class RdvService {
         for (int i = 0; i < tabDebutCreneau.size(); i++) {
             time1 = tabDebutCreneau.get(i);
             time2 = tabFinCreneau.get(i);
-//            System.out.println("Début dispo : " + time1);
-//            System.out.println("Fin dispo : " + time2);
 
             if (debutRdv.equals(time1)) {
-//                System.out.println("    Remplacer : " + time1 + " par "+finRdv);
                 tabDebutCreneau.set(tabDebutCreneau.indexOf(time1), finRdv);
-//                System.out.println("\n  Test : ");
-//                System.out.println(tabDebutCreneau);
-//                System.out.println(tabFinCreneau);
                 if (tabFinCreneau.contains(finRdv)) {
                     tabDebutCreneau.remove(finRdv);
                     tabFinCreneau.remove(finRdv);
@@ -192,7 +165,7 @@ public class RdvService {
 
     /**
      * To create a rdv on the database for example
-     * @throws ParseException
+     * @throws ParseException exception
      */
     public void createRdvs() throws ParseException {
         int numOfRdvs = rdvDao.listRdvs().size();
@@ -220,7 +193,7 @@ public class RdvService {
 
     /**
      * to get the list of rdv for example
-     * @throws ParseException
+     * @throws ParseException exception
      */
     public void listRdvTest() throws ParseException {
         Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
@@ -238,7 +211,7 @@ public class RdvService {
 
     /**
      * the list of availabilities
-     * @throws ParseException
+     * @throws ParseException exception
      */
     public void testListCreneauxDispo() throws ParseException {
         Professionnel professionnel = professionnelDao.searchProfessionnelById(2L);
@@ -249,12 +222,5 @@ public class RdvService {
         System.out.println("\nListe de créneaux disponibles pour le " + dateDuJour +" avec " + professionnel.getPrenom() + " " + professionnel.getNom() + " :");
         System.out.println(creneauxDispo);
     }
-//
-//    public List<Rdv> rdvsParProfessionnelEtDate(Professionnel prof, Date date){
-//        Calendar c = Calendar.getInstance();
-//        c.setTime(date);
-//        c.add(Calendar.DATE, 1);
-//        return manager.createNamedQuery("tousLesRdvParProfEtDate").setParameter("prof", prof).
-//                setParameter("date",date).setParameter("date2",c.getTime()).getResultList();
-//    }
+
 }
