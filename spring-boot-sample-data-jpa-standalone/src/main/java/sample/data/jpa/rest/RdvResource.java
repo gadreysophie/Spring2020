@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.RdvDao;
+import sample.data.jpa.dao.TypeRdvDao;
 import sample.data.jpa.domain.Rdv;
+import sample.data.jpa.dto.CreneauxDispoParProfEtDateEtTypeRdv;
 import sample.data.jpa.dto.RdvsParProfessionnelEtDate;
-
+import sample.data.jpa.service.RdvService;
 import java.util.List;
 
 @RestController()
@@ -16,6 +18,9 @@ public class RdvResource {
 
     @Autowired
     RdvDao rdvDao;
+
+    @Autowired
+    TypeRdvDao typeRdvDao;
 
     /**
      * to get the rdv by the id
@@ -41,19 +46,25 @@ public class RdvResource {
      * @param rdvsParProfessionnelEtDate the date and professional
      * @return a list of rdv by date and professional
      */
-
     @GetMapping(path="/listRdvParProfEtDate/", produces = "application/json")
     public List<Rdv> getRdvsParProfEtDate(@RequestBody RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate)  {
         return rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate.getProfessionnel().getId(), rdvsParProfessionnelEtDate.getDate(), rdvsParProfessionnelEtDate.getDate2());
     }
 
-    // rajout liste créneaux dispo
 
-    /**
-     * to add a rdv on the database
-     * @param rdv the rdv
-     * @return the http response to get the status of the request
-     */
+    @GetMapping(path = "/creneauxDispoParProfEtDateEtTypeRdv/", produces = "application/json")
+    public List<Rdv> getCreneauxDispoParProfEtDateEtTypeRdv(@RequestBody CreneauxDispoParProfEtDateEtTypeRdv creneauxDispoParProfEtDateEtTypeRdv){
+        return RdvService.listCreneauxDispo(creneauxDispoParProfEtDateEtTypeRdv, rdvDao, typeRdvDao);
+    }
+
+
+
+
+        /**
+         * to add a rdv on the database
+         * @param rdv the rdv
+         * @return the http response to get the status of the request
+         */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Rdv> addRdv(
             @RequestBody Rdv rdv) {

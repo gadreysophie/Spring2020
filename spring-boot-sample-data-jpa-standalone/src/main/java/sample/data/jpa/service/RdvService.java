@@ -5,10 +5,8 @@ import sample.data.jpa.dao.ProfessionnelDao;
 import sample.data.jpa.dao.RdvDao;
 import sample.data.jpa.dao.TypeRdvDao;
 import sample.data.jpa.dao.UtilisateurDao;
-import sample.data.jpa.domain.Professionnel;
-import sample.data.jpa.domain.Rdv;
-import sample.data.jpa.domain.TypeRdv;
-import sample.data.jpa.domain.Utilisateur;
+import sample.data.jpa.domain.*;
+import sample.data.jpa.dto.CreneauxDispoParProfEtDateEtTypeRdv;
 import sample.data.jpa.dto.RdvsParProfessionnelEtDate;
 import java.sql.Time;
 import java.text.ParseException;
@@ -31,14 +29,20 @@ public class RdvService {
 
     /**
      * To get the list of availabilities of a professional in function of his saved availabilities
-     * @param prof Professional
-     * @param date Date
-     * @param typeRdv Type of Rdv
+     * @param creneauxDispoParProfEtDateEtTypeRdv DTO CreneauxDispoParProfEtDateEtTypeRdv
+     * @param rdvDao rdvDao
+     * @param typeRdvDao typeRdvDao
      * @return the list of availabilities by professional for a date and type of rdv
      */
-    public HashMap<Integer, List<Time>> listCreneauxDispoTest(Professionnel prof, Date date, TypeRdv typeRdv){
+    public static List<Rdv> listCreneauxDispo(CreneauxDispoParProfEtDateEtTypeRdv creneauxDispoParProfEtDateEtTypeRdv, RdvDao rdvDao, TypeRdvDao typeRdvDao){
+        Professionnel prof = creneauxDispoParProfEtDateEtTypeRdv.getProfessionnel();
+        Date date = creneauxDispoParProfEtDateEtTypeRdv.getDate();
+        TypeRdv typeRdv = creneauxDispoParProfEtDateEtTypeRdv.getTypeRdv();
+
         Calendar c = Calendar.getInstance();
         c.setTime(date);
+
+
 
         // Listes des temps libres dispos initialisées à vide
         List<Time> tabDebutCreneauxDispoMatin = new ArrayList<>();
@@ -50,7 +54,6 @@ public class RdvService {
 
         String [] joursPresenceTab = prof.getJoursDePresence().split("(?!^)");
         if(joursPresenceTab[c.get(Calendar.DAY_OF_WEEK)-1].equals("1")){
-
             RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate = new RdvsParProfessionnelEtDate(prof, date);
 
             List<Rdv> resultCreneauxRes = rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate.getProfessionnel().getId(), rdvsParProfessionnelEtDate.getDate(), rdvsParProfessionnelEtDate.getDate2());
@@ -82,13 +85,30 @@ public class RdvService {
             constructTabOfCreneaux(tabDebutCreneauxDispoAprem, tabFinCreneauxDispoAprem, dureeTypeRdv, minDuree, tabDebutCreneauxDispo, tabFinCreneauxDispo);
         }
 
-        HashMap<Integer, List<Time>> creneauxDispo = new HashMap<>();
-        for (int i = 0; i < tabDebutCreneauxDispo.size(); i++) {
-            List<Time> listTime = new ArrayList<>();
-            listTime.add(tabDebutCreneauxDispo.get(i));
-            listTime.add(tabFinCreneauxDispo.get(i));
-            creneauxDispo.put(i,listTime);
+//        HashMap<Integer, List<Time>> creneauxDispo = new HashMap<>();
+//        for (int i = 0; i < tabDebutCreneauxDispo.size(); i++) {
+//            List<Time> listTime = new ArrayList<>();
+//            listTime.add(tabDebutCreneauxDispo.get(i));
+//            listTime.add(tabFinCreneauxDispo.get(i));
+//            creneauxDispo.put(i,listTime);
+//        }
+
+        List<Rdv> creneauxDispo = new ArrayList<>();
+        Utilisateur user = new Utilisateur("Nom0", "Prenom0", "Prenom0","Prenom0@hotmail.fr", "prenom0");
+        user.setId(0L);
+        typeRdv = typeRdvDao.searchTypeRdvById(typeRdv.getId());
+        prof = typeRdv.getProfessionnel();
+        for (Time dateDebut : tabDebutCreneauxDispo) {
+            Calendar calendar1 = Calendar.getInstance();
+            calendar1.setTime(dateDebut);
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH),
+                    calendar1.get(Calendar.HOUR), calendar1.get(Calendar.MINUTE), calendar1.get(Calendar.SECOND));
+            Rdv rdv = new Rdv(typeRdv, prof, user, calendar2.getTime());
+            rdv.setId(0L);
+            creneauxDispo.add(rdv);
         }
+
         return creneauxDispo;
     }
 
@@ -99,7 +119,7 @@ public class RdvService {
      * @param tabDebutCreneau table of the beginning hours
      * @param tabFinCreneau table of the end hours
      */
-    private void constructTabOfTempsLibre(Time debutRdv, Time finRdv, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
+    private static void constructTabOfTempsLibre(Time debutRdv, Time finRdv, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
         Time time1;
         Time time2;
         Time tmp;
@@ -139,7 +159,7 @@ public class RdvService {
      * @param tabDebutCreneau table of the beginning dates
      * @param tabFinCreneau table of the end dates
      */
-    private void constructTabOfCreneaux(List<Time> tabDebutTempsLibre, List<Time> tabFinTempsLibre, Integer dureeRdv, Integer minduree, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
+    private static void constructTabOfCreneaux(List<Time> tabDebutTempsLibre, List<Time> tabFinTempsLibre, Integer dureeRdv, Integer minduree, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
         for (int i = 0; i < tabDebutTempsLibre.size(); i++) {
             Time heureDebutTempsLibre = tabDebutTempsLibre.get(i);
             Time heureFinTempsLibre = tabFinTempsLibre.get(i);
@@ -218,7 +238,7 @@ public class RdvService {
         TypeRdv typeRdv = typeRdvDao.searchTypeRdvById(1L);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String dateDuJour = "2021-10-29";
-        HashMap<Integer, List<Time>> creneauxDispo = listCreneauxDispoTest(professionnel, dateFormat.parse(dateDuJour + " 00:00"), typeRdv);
+        List<Rdv> creneauxDispo = listCreneauxDispo(new CreneauxDispoParProfEtDateEtTypeRdv(professionnel, dateFormat.parse(dateDuJour + " 00:00"), typeRdv), rdvDao, typeRdvDao);
         System.out.println("\nListe de créneaux disponibles pour le " + dateDuJour +" avec " + professionnel.getPrenom() + " " + professionnel.getNom() + " :");
         System.out.println(creneauxDispo);
     }
