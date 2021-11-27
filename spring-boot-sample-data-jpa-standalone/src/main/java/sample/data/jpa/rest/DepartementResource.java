@@ -32,7 +32,19 @@ public class DepartementResource {
      */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Departement> addDepartement(
-           @RequestBody Departement dept) {
+            @RequestBody Departement dept) {
+        departementDao.save(dept);
+        return ResponseEntity.ok(dept);
+    }
+
+    /**
+     * to update a department in the database
+     * @param dept the department to add in the database
+     * @return the http response to get the status of the request
+     */
+    @PutMapping(consumes = "application/json")
+    public ResponseEntity<Departement> updateDepartement(
+            @RequestBody Departement dept) {
         departementDao.save(dept);
         return ResponseEntity.ok(dept);
     }

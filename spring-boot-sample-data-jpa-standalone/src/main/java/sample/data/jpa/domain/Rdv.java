@@ -38,6 +38,19 @@ public class Rdv {
         this.dateFin = c.getTime();
     }
 
+    public Rdv(Long id, TypeRdv typeRdv, Professionnel professionnel, Utilisateur utilisateur, Date dateDebut) {
+        this.id = id;
+        this.typeRdv = typeRdv;
+        this.professionnel = professionnel;
+        this.utilisateur = utilisateur;
+        this.dateDebut = dateDebut;
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(dateDebut);
+        c.add(Calendar.MINUTE, typeRdv.getDuree());
+        this.dateFin = c.getTime();
+    }
+
     @Id
     @GeneratedValue(generator="generatorIdRdv")
     public Long getId() {

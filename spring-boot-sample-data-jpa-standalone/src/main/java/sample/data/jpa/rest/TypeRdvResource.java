@@ -67,6 +67,18 @@ public class TypeRdvResource {
     }
 
     /**
+     * to update a type of rdv on the database
+     * @param typeRdv type of rdv
+     * @return the http response to get the status of the request
+     */
+    @PutMapping(consumes = "application/json")
+    public ResponseEntity<TypeRdv> updateTypeRdv(
+            @RequestBody TypeRdv typeRdv) {
+        typeRdvDao.save(typeRdv);
+        return ResponseEntity.ok(typeRdv);
+    }
+
+    /**
      * to delete a type of rdv by id
      * @param typeRdvId the id of the type of rdv
      * @return the http response to get the status of the request

@@ -26,6 +26,11 @@ public class Departement {
         this.nom = nom;
     }
 
+    public Departement(Long id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
     @Id
     @GeneratedValue(generator="generatorIdDepartement")
     public Long getId() {

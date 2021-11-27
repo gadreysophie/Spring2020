@@ -32,6 +32,15 @@ public abstract class Personne {
         this.mdp = mdp;
     }
 
+    public Personne(Long id, String nom, String prenom, String identifiant, String mail, String mdp) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.identifiant = identifiant;
+        this.mdp = mdp;
+    }
+
     @Id
     @GeneratedValue(generator="generatorIdPersonne")
     @XmlElement(name = "id")

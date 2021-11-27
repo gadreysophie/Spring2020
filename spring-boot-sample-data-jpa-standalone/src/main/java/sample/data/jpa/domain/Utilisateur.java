@@ -29,6 +29,10 @@ public class Utilisateur extends Personne {
         super(nom, prenom, identifiant, mail, mdp);
     }
 
+    public Utilisateur (Long id, String nom, String prenom, String identifiant, String mail, String mdp) {
+        super(id, nom, prenom, identifiant, mail, mdp);
+    }
+
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
     @JsonIgnore
     public List<Rdv> getRdvs() {

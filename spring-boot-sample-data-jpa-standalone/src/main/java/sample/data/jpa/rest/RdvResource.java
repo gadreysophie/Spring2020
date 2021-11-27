@@ -60,13 +60,26 @@ public class RdvResource {
 
 
 
-        /**
-         * to add a rdv on the database
-         * @param rdv the rdv
-         * @return the http response to get the status of the request
-         */
+    /**
+     * to add a rdv on the database
+     * @param rdv the rdv
+     * @return the http response to get the status of the request
+     */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Rdv> addRdv(
+            @RequestBody Rdv rdv) {
+        rdvDao.save(rdv);
+        return ResponseEntity.ok(rdv);
+    }
+
+
+    /**
+     * to update a rdv on the database
+     * @param rdv the rdv
+     * @return the http response to get the status of the request
+     */
+    @PutMapping(consumes = "application/json")
+    public ResponseEntity<Rdv> updateRdv(
             @RequestBody Rdv rdv) {
         rdvDao.save(rdv);
         return ResponseEntity.ok(rdv);

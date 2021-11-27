@@ -46,6 +46,17 @@ public class UtilisateurResource {
     }
 
     /**
+     * to update a user on the database
+     * @param user the user to add
+     * @return the http response to get the status of the request
+     */
+    @PutMapping(consumes = "application/json")
+    public ResponseEntity<Utilisateur> updateUser(@RequestBody Utilisateur user){
+        utilisateurDao.save(user);
+        return ResponseEntity.ok(user);
+    }
+
+    /**
      * to delete a user from the database
      * @param userId the id of the user
      * @return the http response to get the status of the request

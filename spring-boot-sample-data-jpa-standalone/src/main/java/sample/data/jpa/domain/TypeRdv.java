@@ -34,6 +34,13 @@ public class TypeRdv {
         this.duree = duree;
     }
 
+    public TypeRdv(Long id, String nom, Professionnel professionnel, Integer duree) {
+        this.id = id;
+        this.nom = nom;
+        this.professionnel = professionnel;
+        this.duree = duree;
+    }
+
     @Id
     @GeneratedValue(generator="generatorIdTypeRdv")
     @XmlElement(name = "id")

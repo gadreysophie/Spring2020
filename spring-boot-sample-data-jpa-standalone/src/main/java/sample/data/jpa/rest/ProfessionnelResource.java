@@ -50,7 +50,19 @@ public class ProfessionnelResource {
      */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Professionnel> addProfessionnel(
-         @RequestBody Professionnel prof) {
+            @RequestBody Professionnel prof) {
+        professionnelDao.save(prof);
+        return ResponseEntity.ok(prof);
+    }
+
+    /**
+     * to update a professional to the database
+     * @param prof the professional to add
+     * @return the http response to get the status of the request
+     */
+    @PutMapping(consumes = "application/json")
+    public ResponseEntity<Professionnel> updateProfessionnel(
+            @RequestBody Professionnel prof) {
         professionnelDao.save(prof);
         return ResponseEntity.ok(prof);
     }

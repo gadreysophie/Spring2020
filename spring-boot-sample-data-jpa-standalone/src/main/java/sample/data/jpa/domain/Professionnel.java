@@ -54,6 +54,18 @@ public class Professionnel extends Personne {
         this.joursDePresence = joursDePresence;
     }
 
+    public Professionnel(Long id, String nom, String prenom, String identifiant, String mail, String mdp,
+                         Departement department, Time heureDebut, Time heureFin, Time heureDebutPause,
+                         Time heureFinPause, String joursDePresence) {
+        super(id, nom, prenom, identifiant, mail, mdp);
+        this.departement = department;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        this.heureDebutPause = heureDebutPause;
+        this.heureFinPause = heureFinPause;
+        this.joursDePresence = joursDePresence;
+    }
+
     @ManyToOne
     public Departement getDepartement() {
         return departement;
