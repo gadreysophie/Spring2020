@@ -16,7 +16,7 @@ public class ProfessionnelService {
     DepartementDao departementDao;
 
     /**
-     * to create professionals on the database
+     * To create professionals on the database
      */
     public void createFalseProfessionnels() {
         int numOfEmployees = professionnelDao.listProfessionnels().size();
@@ -34,7 +34,7 @@ public class ProfessionnelService {
     }
 
     /**
-     * to get the list of professionals
+     * To get the list of professionals
      */
     public void listProfessionnelsTest() {
         List<Professionnel> resultList = professionnelDao.listProfessionnels();

@@ -204,7 +204,7 @@ public class RdvService {
     }
 
     /**
-     * to get the list of rdv for example
+     * To get the list of rdv for example
      * @throws ParseException exception
      */
     public void listRdvTest() throws ParseException {
