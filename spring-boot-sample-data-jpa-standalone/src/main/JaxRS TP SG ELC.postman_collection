@@ -1,0 +1,1769 @@
+{
+	"info": {
+		"_postman_id": "eefcaa30-545e-4214-b8d1-d05af96d8663",
+		"name": "JaxRS TP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DepartmentRessource",
+			"item": [
+				{
+					"name": "addDept",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nom\": \"new1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/dept",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"dept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addDept2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nom\": \"new2\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/dept",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"dept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addDept3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nom\": \"new3\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/dept",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"dept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDept3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 3,\n\t\"nom\": \"Updatenew3\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/dept",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"dept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchDeptById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/dept/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"dept",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDepts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/dept/listDept",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"dept",
+								"listDept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteDept",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/dept/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"dept",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserRessource",
+			"item": [
+				{
+					"name": "addUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"nom\": \"Monsieur\" ,\n\t\"prenom\": \"toto\",\n\t\"identifiant\": \"Mtoto\",\n\t\"mail\":\"toto@univrennes.fr\",\n\t\"mdp\": \"toto2\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addUser2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"nom\": \"Madame\" ,\n\t\"prenom\": \"patate\",\n\t\"identifiant\": \"Mpatate\",\n\t\"mail\":\"patate@univrennes.fr\",\n\t\"mdp\": \"patate3\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addUser3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"nom\": \"Madame3\" ,\n\t\"prenom\": \"patate3\",\n\t\"identifiant\": \"Mpatate3\",\n\t\"mail\":\"patate4@univrennes.fr\",\n\t\"mdp\": \"patate4\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"id\": 3,\n\t\"nom\": \"UpdateMadame3\" ,\n\t\"prenom\": \"Updatepatate3\",\n\t\"identifiant\": \"Mpatate3\",\n\t\"mail\":\"patate4@univrennes.fr\",\n\t\"mdp\": \"patate4\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchUserById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/user/listUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"user",
+								"listUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/user/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProfessionnelRessource",
+			"item": [
+				{
+					"name": "addProfessionnel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"nom\": \"Monsieur\" ,\n\t\"prenom\": \"Prof\",\n\t\"identifiant\": \"Mprof\",\n\t\"mail\":\"prof@univrennes.fr\",\n\t\"mdp\": \"ccc\",\n    \"departement\":{\n        \"id\": 1\n    },\n    \"heureDebut\": \"09:00:00\",\n    \"heureFin\": \"17:00:00\",\n    \"heureDebutPause\": \"12:30:00\",\n    \"heureFinPause\": \"14:00:00\",\n\t\"joursDePresence\":\"0111101\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/prof",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"prof"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addProfessionnel2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"nom\": \"Madame\" ,\n\t\"prenom\": \"Prof\",\n\t\"identifiant\": \"Mmeprof\",\n\t\"mail\":\"Mmeprof@univrennes.fr\",\n\t\"mdp\": \"ccc\",\n    \"departement\":{\n        \"id\": 2\n    },\n    \"heureDebut\": \"09:00:00\",\n    \"heureFin\": \"18:00:00\",\n    \"heureDebutPause\": \"12:00:00\",\n    \"heureFinPause\": \"14:00:00\",\n\t\"joursDePresence\":\"0101111\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/prof",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"prof"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addProfessionnel3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"nom\": \"Madame3\" ,\n\t\"prenom\": \"Prof3\",\n\t\"identifiant\": \"Mmeprof3\",\n\t\"mail\":\"Mmeprof3@univrennes.fr\",\n\t\"mdp\": \"ccc3\",\n    \"departement\":{\n        \"id\": 2\n    },\n    \"heureDebut\": \"09:00:00\",\n    \"heureFin\": \"18:00:00\",\n    \"heureDebutPause\": \"12:00:00\",\n    \"heureFinPause\": \"14:00:00\",\n\t\"joursDePresence\":\"0101111\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/prof",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"prof"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProfessionnel3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"id\": 6,\n\t\"nom\": \"UpdateMadame3\" ,\n\t\"prenom\": \"Prof3\",\n\t\"identifiant\": \"Mmeprof3\",\n\t\"mail\":\"Mmeprof3@univrennes.fr\",\n\t\"mdp\": \"ccc3\",\n    \"departement\":{\n        \"id\": 2\n    },\n    \"heureDebut\": \"09:00:00\",\n    \"heureFin\": \"18:00:00\",\n    \"heureDebutPause\": \"12:00:00\",\n    \"heureFinPause\": \"14:00:00\",\n\t\"joursDePresence\":\"0101111\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/prof",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"prof"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchProfById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/prof/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"prof",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProfs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/prof/listProf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"prof",
+								"listProf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProfsByName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/prof/listProf/Monsieur",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"prof",
+								"listProf",
+								"Monsieur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProf",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/prof/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"prof",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TypeRdvRessource",
+			"item": [
+				{
+					"name": "addTypeRdv",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nom\": \"typerdv1\",\n    \"professionnel\":{\n        \"id\": 4\n    },\n    \"duree\": 15\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/typerdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"typerdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addTypeRdv2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nom\": \"typerdv2\",\n    \"professionnel\":{\n        \"id\": 5\n    },\n    \"duree\": 15\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/typerdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"typerdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addTypeRdv3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nom\": \"typerdv3\",\n    \"professionnel\":{\n        \"id\": 5\n    },\n    \"duree\": 60\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/typerdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"typerdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addTypeRdv4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nom\": \"typerdv4\",\n    \"professionnel\":{\n        \"id\": 5\n    },\n    \"duree\": 15\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/typerdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"typerdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTypeRdv4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 4,\n\t\"nom\": \"typerdvupdate4\",\n    \"professionnel\":{\n        \"id\": 5\n    },\n    \"duree\": 15\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/typerdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"typerdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchTypeRdvById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/typerdv/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"typerdv",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchMinDureeTypeRdvByProfId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/typerdv/listTypeRdv/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"typerdv",
+								"listTypeRdv",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchListTypeRdvsParProfId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/typerdv/minTypeRdv/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"typerdv",
+								"minTypeRdv",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTypeRdvs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/typerdv/listTypeRdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"typerdv",
+								"listTypeRdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTypeRdv",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/typerdv/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"typerdv",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RdvRessource",
+			"item": [
+				{
+					"name": "addRdv",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"typeRdv\":{\n        \"id\": 1\n    },\n    \"professionnel\":{\n        \"id\": 4\n    },\n    \"utilisateur\":{\n        \"id\": \"1\"\n    },\n\t\"dateDebut\": \"2021-10-29T08:30:00.263+00:00\",\n    \"dateFin\": \"2021-10-29T08:45:00.263+00:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/rdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateRdv",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"typeRdv\":{\n        \"id\": 1\n    },\n    \"professionnel\":{\n        \"id\": 4\n    },\n    \"utilisateur\":{\n        \"id\": \"1\"\n    },\n\t\"dateDebut\": \"2021-10-29T08:45:00.263+00:00\",\n    \"dateFin\": \"2021-10-29T09:00:00.263+00:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/rdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addRdv2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"typeRdv\":{\n        \"id\": 2\n    },\n    \"professionnel\":{\n        \"id\": 5\n    },\n    \"utilisateur\":{\n        \"id\": 2\n    },\n\t\"dateDebut\": \"2021-10-29T07:15:00.263+00:00\",\n    \"dateFin\": \"2021-10-29T07:30:00.263+00:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/rdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addRdv3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"typeRdv\":{\n        \"id\": 2\n    },\n    \"professionnel\":{\n        \"id\": 5\n    },\n    \"utilisateur\":{\n        \"id\": 2\n    },\n\t\"dateDebut\": \"2021-10-29T08:30:00.263+00:00\",\n    \"dateFin\": \"2021-10-29T08:45:00.263+00:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/rdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addRdv4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"typeRdv\":{\n        \"id\": 3\n    },\n    \"professionnel\":{\n        \"id\": 5\n    },\n    \"utilisateur\":{\n        \"id\": 2\n    },\n\t\"dateDebut\": \"2021-10-29T13:15:00.263+00:00\",\n    \"dateFin\": \"2021-10-29T14:15:00.263+00:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/rdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchRdvById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/rdv/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchRdvsParProfEtDate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Professionnel\":{\r\n        \"id\": 5\r\n    },\r\n    \"Date\": 1635465600000  \r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8084/rdv/listRdvParProfEtDate/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv",
+								"listRdvParProfEtDate",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchCreneauxDispoParProfEtDateEtTypeRdv",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Professionnel\":{\r\n        \"id\": 5,\r\n        \"nom\": \"Madame\" ,\r\n        \"prenom\": \"Prof\",\r\n        \"identifiant\": \"Mmeprof\",\r\n        \"mail\":\"Mmeprof@univrennes.fr\",\r\n        \"mdp\": \"ccc\",\r\n        \"departement\":{\r\n            \"id\": 2\r\n        },\r\n        \"heureDebut\": \"09:00:00\",\r\n        \"heureFin\": \"18:00:00\",\r\n        \"heureDebutPause\": \"12:00:00\",\r\n        \"heureFinPause\": \"14:00:00\",\r\n        \"joursDePresence\":\"0101111\"\r\n    },\r\n    \"Date\": 1635458400000,\r\n    \"TypeRdv\":{\r\n        \"id\": 3,\r\n        \"nom\": \"typerdv3\",\r\n        \"duree\": 60\r\n    }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8084/rdv/creneauxDispoParProfEtDateEtTypeRdv/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv",
+								"creneauxDispoParProfEtDateEtTypeRdv",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchCreneauxDispoParProfEtDateEtTypeRdv2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Professionnel\":{\r\n        \"id\": 5,\r\n        \"nom\": \"Madame\" ,\r\n        \"prenom\": \"Prof\",\r\n        \"identifiant\": \"Mmeprof\",\r\n        \"mail\":\"Mmeprof@univrennes.fr\",\r\n        \"mdp\": \"ccc\",\r\n        \"departement\":{\r\n            \"id\": 2\r\n        },\r\n        \"heureDebut\": \"09:00:00\",\r\n        \"heureFin\": \"18:00:00\",\r\n        \"heureDebutPause\": \"12:00:00\",\r\n        \"heureFinPause\": \"14:00:00\",\r\n        \"joursDePresence\":\"0101111\"\r\n    },\r\n    \"Date\": 1635458400000,\r\n    \"TypeRdv\":{\r\n        \"id\": 2,\r\n        \"nom\": \"typerdv2\",\r\n        \"duree\": 15\r\n    }\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8084/rdv/creneauxDispoParProfEtDateEtTypeRdv/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv",
+								"creneauxDispoParProfEtDateEtTypeRdv",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRdvs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/rdv/listRdv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv",
+								"listRdv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRdv",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function(){",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/rdv/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"rdv",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
