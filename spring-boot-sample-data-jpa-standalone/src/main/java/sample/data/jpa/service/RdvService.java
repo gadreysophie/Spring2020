@@ -234,5 +234,4 @@ public class RdvService {
         System.out.println("\nListe de créneaux disponibles pour le " + dateDuJour +" avec " + professionnel.getPrenom() + " " + professionnel.getNom() + " :");
         System.out.println(creneauxDispo);
     }
-
 }

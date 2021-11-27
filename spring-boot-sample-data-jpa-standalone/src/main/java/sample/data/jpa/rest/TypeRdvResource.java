@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController()
 @RequestMapping(path = "/typerdv")
-
 public class TypeRdvResource {
 
     @Autowired

@@ -24,8 +24,7 @@ public class Professionnel extends Personne {
     private Time heureFin;
     private Time heureDebutPause;
     private Time heureFinPause;
-    // Attention : du dimanche au samedi
-    private String joursDePresence;
+    private String joursDePresence; // Attention : du dimanche au samedi
     private List<TypeRdv> typeDeRdv;
 
     public Professionnel() {

@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController()
 @RequestMapping(path = "/rdv")
-
 public class RdvResource {
 
     @Autowired
@@ -51,14 +50,10 @@ public class RdvResource {
         return rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate.getProfessionnel().getId(), rdvsParProfessionnelEtDate.getDate(), rdvsParProfessionnelEtDate.getDate2());
     }
 
-
     @GetMapping(path = "/creneauxDispoParProfEtDateEtTypeRdv/", produces = "application/json")
     public List<Rdv> getCreneauxDispoParProfEtDateEtTypeRdv(@RequestBody CreneauxDispoParProfEtDateEtTypeRdvDto creneauxDispoParProfEtDateEtTypeRdv){
         return RdvService.listCreneauxDispo(creneauxDispoParProfEtDateEtTypeRdv, rdvDao, typeRdvDao);
     }
-
-
-
 
     /**
      * to add a rdv on the database
@@ -71,7 +66,6 @@ public class RdvResource {
         rdvDao.save(rdv);
         return ResponseEntity.ok(rdv);
     }
-
 
     /**
      * to update a rdv on the database

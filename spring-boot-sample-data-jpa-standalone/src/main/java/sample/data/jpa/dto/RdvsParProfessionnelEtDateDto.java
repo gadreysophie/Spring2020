@@ -42,5 +42,4 @@ public class RdvsParProfessionnelEtDateDto {
         c.add(Calendar.DATE, 1);
         this.date2 = c.getTime();
     }
-
 }
