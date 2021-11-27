@@ -39,10 +39,8 @@ public class RdvService {
         Date date = creneauxDispoParProfEtDateEtTypeRdv.getDate();
         TypeRdv typeRdv = creneauxDispoParProfEtDateEtTypeRdv.getTypeRdv();
 
-        Calendar c = Calendar.getInstance();
+        Calendar c = GregorianCalendar.getInstance();
         c.setTime(date);
-
-
 
         // Listes des temps libres dispos initialisées à vide
         List<Time> tabDebutCreneauxDispoMatin = new ArrayList<>();
@@ -85,14 +83,6 @@ public class RdvService {
             constructTabOfCreneaux(tabDebutCreneauxDispoAprem, tabFinCreneauxDispoAprem, dureeTypeRdv, minDuree, tabDebutCreneauxDispo, tabFinCreneauxDispo);
         }
 
-//        HashMap<Integer, List<Time>> creneauxDispo = new HashMap<>();
-//        for (int i = 0; i < tabDebutCreneauxDispo.size(); i++) {
-//            List<Time> listTime = new ArrayList<>();
-//            listTime.add(tabDebutCreneauxDispo.get(i));
-//            listTime.add(tabFinCreneauxDispo.get(i));
-//            creneauxDispo.put(i,listTime);
-//        }
-
         List<Rdv> creneauxDispo = new ArrayList<>();
         Utilisateur user = new Utilisateur("Nom0", "Prenom0", "Prenom0","Prenom0@hotmail.fr", "prenom0");
         user.setId(0L);
@@ -100,15 +90,17 @@ public class RdvService {
         prof = typeRdv.getProfessionnel();
         for (Time dateDebut : tabDebutCreneauxDispo) {
             Calendar calendar1 = Calendar.getInstance();
-            calendar1.setTime(dateDebut);
-            Calendar calendar2 = Calendar.getInstance();
+            List<String> date1 = Arrays.asList(String.valueOf(dateDebut).split(":"));
+            calendar1.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH),
+                    Integer.parseInt(date1.get(0)), Integer.parseInt(date1.get(1)), Integer.parseInt(date1.get(2))
+            );
+            Calendar calendar2 = GregorianCalendar.getInstance();
             calendar2.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH),
-                    calendar1.get(Calendar.HOUR), calendar1.get(Calendar.MINUTE), calendar1.get(Calendar.SECOND));
+                    calendar1.get(Calendar.HOUR_OF_DAY), calendar1.get(Calendar.MINUTE), calendar1.get(Calendar.SECOND));
             Rdv rdv = new Rdv(typeRdv, prof, user, calendar2.getTime());
             rdv.setId(0L);
             creneauxDispo.add(rdv);
         }
-
         return creneauxDispo;
     }
 
