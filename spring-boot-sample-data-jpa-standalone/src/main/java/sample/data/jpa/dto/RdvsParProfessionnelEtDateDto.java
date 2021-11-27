@@ -2,21 +2,20 @@ package sample.data.jpa.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import sample.data.jpa.domain.Professionnel;
-import sample.data.jpa.domain.TypeRdv;
+import java.util.Calendar;
 import java.util.Date;
 
-public class CreneauxDispoParProfEtDateEtTypeRdv {
+public class RdvsParProfessionnelEtDateDto {
 
     private Professionnel professionnel;
     private Date date;
-    private TypeRdv typeRdv;
+    private Date date2;
 
-    public CreneauxDispoParProfEtDateEtTypeRdv(){}
+    public RdvsParProfessionnelEtDateDto(){}
 
-    public CreneauxDispoParProfEtDateEtTypeRdv(Professionnel professionnel, Date date, TypeRdv typeRdv){
+    public RdvsParProfessionnelEtDateDto(Professionnel professionnel, Date date){
         this.professionnel = professionnel;
         this.date = date;
-        this.typeRdv = typeRdv;
     }
 
     @JsonProperty("Professionnel")
@@ -33,9 +32,15 @@ public class CreneauxDispoParProfEtDateEtTypeRdv {
         this.date = value;
     }
 
-    @JsonProperty("TypeRdv")
-    public TypeRdv getTypeRdv() { return typeRdv; }
+    @JsonProperty("Date2")
+    public Date getDate2() { setDate2(); return date2; }
 
-    @JsonProperty("TypeRdv")
-    public void setTypeRdv(TypeRdv typeRdv) { this.typeRdv = typeRdv; }
+    @JsonProperty("Date2")
+    public void setDate2() {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, 1);
+        this.date2 = c.getTime();
+    }
+
 }

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.dao.RdvDao;
 import sample.data.jpa.dao.TypeRdvDao;
 import sample.data.jpa.domain.Rdv;
-import sample.data.jpa.dto.CreneauxDispoParProfEtDateEtTypeRdv;
-import sample.data.jpa.dto.RdvsParProfessionnelEtDate;
+import sample.data.jpa.dto.CreneauxDispoParProfEtDateEtTypeRdvDto;
+import sample.data.jpa.dto.RdvsParProfessionnelEtDateDto;
 import sample.data.jpa.service.RdvService;
 import java.util.List;
 
@@ -47,13 +47,13 @@ public class RdvResource {
      * @return a list of rdv by date and professional
      */
     @GetMapping(path="/listRdvParProfEtDate/", produces = "application/json")
-    public List<Rdv> getRdvsParProfEtDate(@RequestBody RdvsParProfessionnelEtDate rdvsParProfessionnelEtDate)  {
+    public List<Rdv> getRdvsParProfEtDate(@RequestBody RdvsParProfessionnelEtDateDto rdvsParProfessionnelEtDate)  {
         return rdvDao.rdvsParProfessionnelEtDate(rdvsParProfessionnelEtDate.getProfessionnel().getId(), rdvsParProfessionnelEtDate.getDate(), rdvsParProfessionnelEtDate.getDate2());
     }
 
 
     @GetMapping(path = "/creneauxDispoParProfEtDateEtTypeRdv/", produces = "application/json")
-    public List<Rdv> getCreneauxDispoParProfEtDateEtTypeRdv(@RequestBody CreneauxDispoParProfEtDateEtTypeRdv creneauxDispoParProfEtDateEtTypeRdv){
+    public List<Rdv> getCreneauxDispoParProfEtDateEtTypeRdv(@RequestBody CreneauxDispoParProfEtDateEtTypeRdvDto creneauxDispoParProfEtDateEtTypeRdv){
         return RdvService.listCreneauxDispo(creneauxDispoParProfEtDateEtTypeRdv, rdvDao, typeRdvDao);
     }
 
