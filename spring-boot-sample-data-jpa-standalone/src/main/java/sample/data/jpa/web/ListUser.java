@@ -1,6 +1,8 @@
-package sample.data.jpa.rest;
+package sample.data.jpa.web;
 
 import sample.data.jpa.domain.Utilisateur;
+import sample.data.jpa.rest.UtilisateurResource;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +26,7 @@ public class ListUser extends HttpServlet {
         response.setContentType("text/html");
 
         StringBuilder listUsers = new StringBuilder();
-        for (Utilisateur next : utilisateurResource.utilisateurDao.listUtilisateurs()) {
+        for (Utilisateur next : utilisateurResource.getUsers()) {
             listUsers.append(" <LI>Nom : ").append(next.getNom()).append(", Prénom : ").append(next.getPrenom());
         }
 

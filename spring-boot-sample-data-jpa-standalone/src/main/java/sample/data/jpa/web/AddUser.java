@@ -1,6 +1,8 @@
-package sample.data.jpa.rest;
+package sample.data.jpa.web;
 
 import sample.data.jpa.domain.Utilisateur;
+import sample.data.jpa.rest.UtilisateurResource;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
