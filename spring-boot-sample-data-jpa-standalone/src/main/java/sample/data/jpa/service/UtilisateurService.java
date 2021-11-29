@@ -11,6 +11,9 @@ public class UtilisateurService {
     @Autowired
     UtilisateurDao utilisateurDao;
 
+    /**
+     * To create user on the database
+     */
     public void createFalseUtilisateurs() {
         int numOfUsers = utilisateurDao.listUtilisateurs().size();
         if (numOfUsers == 0) {
@@ -20,7 +23,7 @@ public class UtilisateurService {
     }
 
     /**
-     * to get the list of database
+     * To get the list of database
      */
     public void listUtilisateursTest() {
         List<Utilisateur> resultList = utilisateurDao.listUtilisateurs();

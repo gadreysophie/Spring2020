@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 public class ListUser extends HttpServlet {
 
     /**
-     * to get the list of User in the database
+     * To get the list of User in the database
      * @param request the http request
      * @param response the http response
      * @throws IOException exception

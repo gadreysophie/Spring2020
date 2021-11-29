@@ -8,6 +8,9 @@ import sample.data.jpa.domain.Personne;
 @Transactional
 public interface PersonneDao extends JpaRepository<Personne, Long> {
 
+    /**
+     * To get the list of personne
+     */
     @Query("Select p From Personne p")
     void listPersonnes() ;
 }

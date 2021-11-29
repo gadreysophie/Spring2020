@@ -11,7 +11,7 @@ public class DepartementService {
     DepartementDao departementDao;
 
     /**
-     * to create department on the database
+     * To create department on the database
      */
     public void createFalseDepartements() {
         int numOfDepartements = departementDao.listDepartements().size();
@@ -22,7 +22,7 @@ public class DepartementService {
     }
 
     /**
-     * to get the list of department
+     * To get the list of department
      */
     public void listDepartementsTest() {
         List<Departement> resultList = departementDao.listDepartements();
