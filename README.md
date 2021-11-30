@@ -1,173 +1,204 @@
 # Spring2020
-#Sujet (un doctolib pour voir les profs)
 
-On souhaite développer l'application suivante de type prise de RDV pour tout professionnel. L’idée est de pouvoir connecter l’application à un agenda externe (zimbra, google) pour identifier les plages disponibles pour un utilisateur donné afin de pouvoir prendre un RDV. Chaque professionnel de l’application pourra se créer un compte, se loguer, mettre à disposition l’url de récupération des créneaux disponibles, définir la durée nominal d’un RDV et les intitulés possibles d’un RDV. 
-Un utilisateur souhaitant consulter un professionnel pourra aussi se créer un compte, se loguer et consulter la liste des créneaux disponibles et réserver un créneau.
+## 1 - Sujet
 
+<p style='text-align: justify;'>
+On souhaite développer une application de type "prise de RDV" entre un professionnel et un utilisateur. L’idée est de pouvoir ensuite connecter l’application à un agenda externe (zimbra, google) pour identifier les plages disponibles pour un utilisateur donné afin de pouvoir prendre un RDV. Chaque professionnel de l’application pourra se créer un compte, se loguer, mettre à disposition l’url de récupération des créneaux disponibles, définir la durée nominal d’un RDV et les intitulés possibles d’un RDV. 
+De plus, un utilisateur souhaitant consulter un professionnel pourra lui aussi se créer un compte, se loguer et consulter la liste des créneaux disponibles et réserver un créneau.
+</p>
 
-*TP 1 Mapping Relationnel*
+## 2 - Différents TPs
+
+### *TP 1 Mapping Relationnel*
 
 Lien vers le dépôt GIT : https://github.com/gadreysophie/tpjpa2021
 
-Q1:
-Diagramme UML - genyModel et Drawio
-
-Par rapport au sujet de l'énoncé, nous avions identifier 3 classes métiers principales à développer : 
-
-- Classe Utilisateur
--> Consulter la liste des RDV (collection de RDV)
--> Réserver un RDV
--> Consulter la liste des professionnels
-
-- Classe Professionnel
--> Définir la durée des RDV
--> Définir l'intutilé des RDV
--> Mettre à disposition l'url de récupération des créneaux disponibles 
-
-- Classe RDV
--> Intitulé du RDV
--> Durée du RDV (date de début et date de fin) 
-
-- Classe Département
-
-Q2 : 
-
-Pour démarrer, nous avons créer un premier Package Domain contenant les classes suivantes :
-- Classe Departement
-- Classe Profesionnel
-- Classe Rdv
-- Classe Utilisateur
-
-Ces 4 classes sont annotés @Entity afin de permettre la création de notre base de données relationnelles.
-
-Q3 :
-
-Nous avons créer le package dao afin de pouvoir créer et consulter des données dans la base de données relationnelles.
-Nous avons créer 4 classes : 
-- Classe DepartementDao
-- Classe ProfessionnelDao
-- Classe UtilisateurDao
-- Classe RdvDao
-
-Ces classes contiennent les requêtes qui permettent d'interagir avec la base de données.
-
-Q4 : 
-Test de liaison à une base de données sql. Pour cela il faut modifier le fichier persistance.xml.
-Nous l'avons modifier avec nos données afin de se connecter à notre base sql.
-Pour accéder à la base de données mysql (il faut être sur le réseau de ISTIC):
-base = base_sgadrey
-login = user_sgadrey
-mdp = puccini
-
-Q5 : 
-Afin de travailler sur l'héritage des classes, nous avons créé la classe Personne. Nous avons créer la classe abstraite Personne dans le package domain puis nous avons créé la classe PersonneDao dans le package dao afin d'utiliser la table associée dans notre base de données relationnelles.
-
-Nous avons également travailler sur les requêtes faites via JPA, nous avons créer une @namedQuery dans la classe Professionnel et nous l'avons utilisé dans la classe ProfessionnelDao pour lister tous les profesionnels par nom.
-
--> Problème de l'injection de dépendances - Malgré l'utilisation des DAO, on est dépendant de l'utilisation des EntityManager.
-
-
-Q6:
-
-Par ailleurs, nous avons fait le choix d'utiliser l'annotation SINGLE_TABLE lors de la création de l'entité Personne afin de ne gérer qu'une seule table en base de données et ainsi éviter des pertes de performance en cas de jointures des tables. En utilisant le SINGLE_TABLE, il y aura moins de jointures à réaliser.
-
-*TP 2 Utilisation de REST*
+### *TP 2 Utilisation de REST*
 
 Lien vers le dépôt GIT : https://github.com/gadreysophie/JaxRSOpenAPI
 
-PARTIE 1
+### *TP 3 Utilisation de SPRING*
 
-Q1 :
-Mise en place du serveur Jetty en configurant le pom.xml
+#### *PARTIE 1*
 
-Q2 :
-
-Nous avons mis en forme le formulaire HTML formAddUser.html dans le répertoire webapp -> swagger
-
-Q3 :
-
-Création d'un package Rest avec les classes Resource :
-- DepartementResource
-- ProfessionnelResource
-- RdvResource 
-- UserResource
-
-Ce package et ces classes nous permettent d'envoyer des requêtes de type GET, POST et DELETE afin d'avoir une interaction entre les pages webs (formAddUser.html) et notre base de données.
-
-Q4: 
-
-Création de la classe AddUser afin de récupérer les données saisies dans le formulaire en ligne et les sauvegarder en base de données. 
-Création de la classe ListUser afin d'afficher les données saisies et sauvegardées en base de données.
-
-
-
-Q5: 
-
-Nous avons développé les méthodes afin de lister les créneaux disponibles des professionnels pour l'application de rendez vous dans le package Service -> Classe RdvService. 
-Nous les avons séparées des Dao car cela concerne l'applicatif métier.
-
-PARTIE 2
-
-Q6:
-
-Fork du projet de GitHub pour récupérer les classes (cf Questions précédentes pour la mise en oeuvre sur notre projet JAXRS).
-
-Q7:
-
-Tests sur quelques requêtes avec POSTMAN.
-
--> Toutes nos requêtes sont sur le dépôt GITHUB du projet SPRING 2020.
-
-Voici une des quelques requêtes effectuées :
-
-- http://localhost:8084/prof/1
-
-et la réponse en JSON :
-
-{
-    "nom": "Vorc'h",
-    "identifiant": "rvorch",
-    "mdp": "rvorch",
-    "mail": "rvorch@univrennes.fr",
-    "prenom": "Raoul",
-    "heureDebut": "10:30:00",
-    "heureFin": "12:30:00",
-    "heureDebutPause": "13:30:00",
-    "heureFinPause": "18:00:00",
-    "joursDePresence": "1110110",
-    "id": 1
-}
-
-Q8 :
-
-Utilisation de OpenAPI et SWAGGER.
-
-http://localhost:8084/openapi.json -> format inexploitable en l'état les requêtes ne sont pas lisibles
-
-http://localhost:8084/api/ -> format exploitable et beaucoup plus conviviale et testable. On arrive sur Swagger PetStore suivant ce qui est indiqué dans index.html (dans webapp/swagger). 
-
-
-*TP 3 Utilisation de SPRING*
-
-PARTIE 1
-
+<p style='text-align: justify;'>
 Toute la première partie se situe dans le repository suivant :
-https://github.com/gadreysophie/Spring2020/tree/master/spring-boot-sample-simple-standalone
-
+<a href="https://github.com/gadreysophie/Spring2020/tree/master/spring-boot-sample-simple-standalone">https://github.com/gadreysophie/Spring2020/tree/master/spring-boot-sample-simple-standalone</a>
 Nous avons ajouté quelques méthodes qui permettent de tester le fonctionnement avec des System.out.println().
+</p>
 
-PARTIE 2
+#### *PARTIE 2*
 
+<p style='text-align: justify;'>
 La partie 2 reprend le code de la partie 1 en utilisant les annotations @Aspect afin de travailler en programmation par aspect.
+</p>
 
-PARTIE 3 
+#### *PARTIE 3*
 
-Ici nous avons intégré notre code précédemment développé dans le TP2 au dépôt suivant :
-https://github.com/gadreysophie/Spring2020/tree/master/spring-boot-sample-data-jpa-standalone
+<p style='text-align: justify;'>
+Ici nous avons intégré notre code précédemment développé dans le TP2 au dépôt suivant : 
+<a href="https://github.com/gadreysophie/Spring2020/tree/master/spring-boot-sample-data-jpa-standalone">https://github.com/gadreysophie/Spring2020/tree/master/spring-boot-sample-data-jpa-standalone</a>.
+Ainsi, nous avons dû faire plusieurs modifications et adapter notre code afin d'utiliser Spring. 
+</p>
 
-Nous avons dû faire plusieurs modifications afin d'adapter notre code à l'utilisation de SPRING. 
-- Toutes nos dao sont devenues des interfaces que nous utilisons dans nos classes Resource du package REST.
-- Nous avons utilisé le package SERVICE afin d'y mettre toutes nos méthodes côté applicatif métier.
-- Nous avons également crée un package DTO afin de faire le lien entre nos classes domain et resource pour l'applicatif métier.
+## 3 - Diagramme UML et explications
 
-Tous nos tests Postman se trouvent à la racine du projet sous le nom Spring TP.postman_collection.
+<p style='text-align: justify;'>
+Par rapport au sujet de l'énoncé, nous avons identifié 6 classes métiers principales à développer : 
+</p>
+
+<ul style='text-align: justify;'><li>Une classe abstraite Personne</li></ul>
+
+    - Contenant les attributs généraux qualifiant à la fois un utilisateur et un professionnel
+
+<ul style='text-align: justify;'><li>Une classe Utilisateur (extends Personne)</li></ul>
+
+    - Réserver / Annuler un rdv
+    - Consulter la liste des rdvs disponibles
+    - Consulter la liste des professionnels
+    - Consulter la liste de ses réservations
+    - Création d'un compte
+
+<ul style='text-align: justify;'><li>Une classe Professionnel (extends Personne)</li></ul>
+
+    - Réserver / Annuler un RDV
+    - Consulter la liste des rdvs disponibles
+    - Consulter la liste de ses rdvs
+    - Ajouter / Modifier un type de rdv
+    - Ajouter / Modifier son département
+    - Création d'un compte
+
+<ul style='text-align: justify;'><li>Une classe RDV</li></ul>
+
+    - Contenant toutes les informations liées à un rdv : date de début, date de fin, professionnel, utilisateur...
+    - Création d'une liste de créneaux disponibles via une DTO
+
+<ul style='text-align: justify;'><li>Une classe TypeRdv</li></ul>
+
+    - Permet de définir différents types de rdv avec des durées et des noms différrents
+
+<ul style='text-align: justify;'><li>Une Classe Departement</li></ul>
+
+    - Permet d'indiquer le département dans lequel le professionnel travaille
+
+<p style='text-align: justify;'>
+Afin de travailler sur l'héritage des classes comme demandé dans un des TPs, nous avons créé la classe abstraite Personne. Par ailleurs, nous avons fait le choix d'utiliser l'annotation SINGLE_TABLE lors de la création de l'entité Personne afin de ne gérer qu'une seule table en base de données et ainsi éviter des pertes de performance en cas de jointures des tables.
+</p>
+
+<p style='text-align: justify;'>
+Ensuite, nous avons décidé de créer une classe TypeRdv dans le but de simplifier la gestion des durées de rdv. Une optimisation pourra être effectuée avant de proposer des créneaux disponibles aux utilisateurs. L'objectif étant de ne pas avoir de créneaux libres trop courts qui ne permettent pas de fixer un rdv. Ce système permet donc de proposer des créneaux disponibles, à un utilisateur, pour un professionnel (à une date donnée) en prenant en compte la durée minimum de ses types de rdv. Ainsi, il pourra toujours au minimum placer un rdv (avec la durée minimum de ses types de rdv) lors de ses créneaux disponibles et donc optimiser le nombre de rdvs par jour.
+</p>
+
+<p style='text-align: justify;'>
+Ci-dessous, le diagramme UML que vous pouvez retrouver dans le répertoire resources (<a href="spring-boot-sample-data-jpa-standalone/src/main/resources">spring-boot-sample-data-jpa-standalone/src/main/resources</a>) sous le nom de 'Diagramme UML SG ELC.png'</p>
+
+![](spring-boot-sample-data-jpa-standalone/src/main/resources/Diagramme UML SG ELC.png)
+
+## 4 - Structure
+
+<ul style='text-align: justify;'><li>Un dossier 'domain' contenant les classes métiers et qui sont annotées @Entity pour permettre la création d'une base de données relationnelle.</li></ul>
+
+    - Departement
+    - Personne (classe abstraite)
+    - Professionnel
+    - Rdv
+    - TypeRdv
+    - Utilisateur
+
+<ul style='text-align: justify;'><li>Un dossier 'dao' contenant des interfaces qui permettent de requêter la base de données.</li></ul>
+
+    - DepartementDao
+    - PersonneDao
+    - ProfessionnelDao
+    - RdvDao
+    - TypeRdvDao
+    - UtilisateurDao
+
+<ul style='text-align: justify;'><li>Un dossier 'rest' contenant les classes ressources permettant d'envoyer des requêtes http qui font le lien entre une page web et la base de données.</li></ul>
+
+    - DepartementResource
+    - ProfessionnelResource
+    - RdvResource
+    - TypeRdvResource
+    - UtilisateurResource
+
+<ul style='text-align: justify;'><li>Un dossier 'service' contenant les classes services dans lesquelles des fonctions pour ajouter des fausses données dans la base de données ont été codées. Mais aussi certaines plus complexes comme notamment les méthodes pour générer une liste de créneaux disponibles.</li></ul>
+
+    - DepartementService
+    - ProfessionnelService
+    - RdvService
+    - TypeRdvService
+    - UtilisateurService
+
+<ul style='text-align: justify;'><li>Un dossier 'dto' contenant deux classes qui permettent de faire le lien entre nos classes métiers et ressources.</li></ul>
+
+    - CreneauxDispoParProfEtDateEtTypeRdvDto
+    - RdvsParProfessionnelEtDateDto
+
+<ul style='text-align: justify;'><li>Un dossier 'web' contenant deux classes qui permettent de générer des pages web.</li></ul>
+
+    - AddUser
+    - ListUser
+
+## 5 - Lancement de l'application
+
+<p style='text-align: justify;'>
+Dans un premier temps, il faut cloner ce projet en utilisant par exemple la commande 'New Project from Version Control' d'IntelliJ et le lien ci-dessous.
+</p>
+    
+    https://github.com/gadreysophie/Spring2020.git
+
+<p style='text-align: justify;'>
+Puis, afin de lancer l'application, il est tout d'abord nécessaire de s'assurer que le port 8084 n'est pas utilisé. 
+Ensuite, vous devez reload le maven pour être à jour au niveau des dépendances maven.
+Enfin, il faut être connecté au réseau wifi de l'ISTIC ou bien utiliser un vpn comme forticlient si on souhaite s'y connecter depuis un site extérieur.
+</p>
+
+<p style='text-align: justify;'>
+Si vous souhaitez utiliser un vpn, la passerelle distante à utiliser est la suivante : <a href="istic-vpn.univ-rennes1.fr">istic-vpn.univ-rennes1.fr</a>.
+Pour se connecter, il suffit d'utiliser sa paire d'identifiant/mot de passe de l'université de Rennes 1.
+</p>
+
+<p style='text-align: justify;'>
+Une fois connecté au réseau, il suffit de lancer l'application SpringBoot 'SampleDataJpaApplication' (<a href="spring-boot-sample-data-jpa-standalone/src/main/java/sample/data/jpa/SampleDataJpaApplication.java">spring-boot-sample-data-jpa-standalone/src/main/java/sample/data/jpa/SampleDataJpaApplication.java</a>).
+</p>
+
+<p style='text-align: justify;'>
+Pour information, on peut accèder au phpMyAdmin de la base de données mysql à l'adresse suivante en utilisant les identifiants ci-dessous : <a href="http://phpmyadmin.istic.univ-rennes1.fr/phpmyadmin/index.php?db=base_sgadrey">http://phpmyadmin.istic.univ-rennes1.fr/phpmyadmin/index.php?db=base_sgadrey</a>.
+</p>
+
+    - base = base_sgadrey
+    - login = user_sgadrey
+    - mdp = puccini
+
+## 6 - Description de l'API Rest
+
+<p style='text-align: justify;'>
+Concernant la description de l'API Rest, nous avons choisi d'utiliser swagger. Ainsi, la description de notre API Rest est visible via cette adresse : <a href="http://localhost:8084/swagger-ui.html">http://localhost:8084/swagger-ui.html</a>
+</p>
+
+## 7 - Tests via Postman
+
+<p style='text-align: justify;'>
+Pour tester notre API Rest, nous avons créé une collection de tests en utilisant Postman.
+Cette collection de tests (fichier 'JaxRS TP SG ELC.postman_collection') se trouve dans le répertoire resources (<a href="spring-boot-sample-data-jpa-standalone/src/main/resources">spring-boot-sample-data-jpa-standalone/src/main/resources</a>) et peut être importée directement sur Postman. Si l'application est lancée, la collection peut directement être 'run' entièrement.
+</p>
+
+<p style='text-align: justify;'>
+Par exemple, voici une requête parmi celles effectuées :
+</p>
+
+    http://localhost:8084/user/1
+
+<p style='text-align: justify;'>
+et la réponse en JSON :
+</p>
+
+    {
+        "id": 1,
+        "nom": "Monsieur",
+        "identifiant": "Mtoto",
+        "mdp": "toto2",
+        "mail": "toto@univrennes.fr",
+        "prenom": "toto"
+    }
