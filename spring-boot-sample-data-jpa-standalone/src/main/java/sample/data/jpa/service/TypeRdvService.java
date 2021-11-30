@@ -17,7 +17,7 @@ public class TypeRdvService {
     ProfessionnelDao professionnelDao;
 
     /**
-     * To create a type of rdv on the database
+     * To create false data of types of rdv in the database
      */
     public void createFalseTypeRdvs() {
         int numOfTypeRdvs = typeRdvDao.listTypeRdvs().size();
@@ -30,7 +30,7 @@ public class TypeRdvService {
     }
 
     /**
-     * To get the list of type of rdv by professional
+     * To print the list of types of rdv by professional
      */
     public void listTypeRdvParProfTest() {
 
@@ -44,7 +44,7 @@ public class TypeRdvService {
     }
 
     /**
-     * To get the list of type of rdv
+     * To print the list of types of rdv
      */
     public void listTypeRdvsTest() {
         List<TypeRdv> resultList = typeRdvDao.listTypeRdvs();

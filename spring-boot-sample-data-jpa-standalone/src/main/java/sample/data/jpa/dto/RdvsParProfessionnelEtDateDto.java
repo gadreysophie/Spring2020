@@ -7,17 +7,23 @@ import java.util.Date;
 
 public class RdvsParProfessionnelEtDateDto {
 
+    /**
+     * The professional associate to rdvs
+     */
     private Professionnel professionnel;
+
+    /**
+     * Date day
+     */
     private Date date;
+
+    /**
+     * Date day + 1
+     */
     private Date date2;
 
     public RdvsParProfessionnelEtDateDto(){}
 
-    /**
-     * To build rdv by professional and date
-     * @param professionnel the professional
-     * @param date the date of rdv
-     */
     public RdvsParProfessionnelEtDateDto(Professionnel professionnel, Date date){
         this.professionnel = professionnel;
         this.date = date;
@@ -25,28 +31,28 @@ public class RdvsParProfessionnelEtDateDto {
 
     /**
      * To get the professional
-     * @return the professional
+     * @return a professional
      */
     @JsonProperty("Professionnel")
     public Professionnel getProfessionnel() { return professionnel; }
 
     /**
      * To set the professional
-     * @param value the professional to set
+     * @param professionnel a professional
      */
     @JsonProperty("Professionnel")
-    public void setProfessionnel(Professionnel value) { this.professionnel = value; }
+    public void setProfessionnel(Professionnel professionnel) { this.professionnel = professionnel; }
 
     /**
-     * To get the date of rdv
-     * @return the date
+     * To get the date day
+     * @return a date
      */
     @JsonProperty("Date")
     public Date getDate() { return date; }
 
     /**
-     * To set the date of the rdv
-     * @param value
+     * To set the date day
+     * @param value a date
      */
     @JsonProperty("Date")
     public void setDate(Date value) {
@@ -54,14 +60,14 @@ public class RdvsParProfessionnelEtDateDto {
     }
 
     /**
-     * To get the date on the calendar
-     * @return the date on the calendar
+     * To get the date + 1
+     * @return a date
      */
     @JsonProperty("Date2")
     public Date getDate2() { setDate2(); return date2; }
 
     /**
-     * To add the date on the calendar
+     * To set the date + 1
      */
     @JsonProperty("Date2")
     public void setDate2() {

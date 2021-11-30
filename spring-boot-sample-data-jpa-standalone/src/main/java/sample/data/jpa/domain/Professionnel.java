@@ -18,31 +18,50 @@ import java.util.List;
 )
 public class Professionnel extends Personne {
 
+    /**
+     * The department of the professional
+     */
     private Departement departement;
-    private List<Rdv> rdvs = new ArrayList<>();
-    private Time heureDebut;
-    private Time heureFin;
-    private Time heureDebutPause;
-    private Time heureFinPause;
-    private String joursDePresence; // Attention : du dimanche au samedi
-    private List<TypeRdv> typeDeRdv;
 
     /**
-     * To create the instance of professional for the database
+     * The list of rdvs of the professional
      */
+    private List<Rdv> rdvs = new ArrayList<>();
+
+    /**
+     * The start time of the professional
+     */
+    private Time heureDebut;
+
+    /**
+     * The end time of the professional
+     */
+    private Time heureFin;
+
+    /**
+     * The break start time of the professional
+     */
+    private Time heureDebutPause;
+
+    /**
+     * The break end time of the professional
+     */
+    private Time heureFinPause;
+
+    /**
+     * Days of presence of the professional.
+     * A binary string of 7-day from Sunday to Saturday.
+     */
+    private String joursDePresence; // Attention : du dimanche au samedi
+
+    /**
+     * The list of types of rdv of the professional
+     */
+    private List<TypeRdv> typeDeRdv;
+
     public Professionnel() {
     }
 
-    /**
-     * To create the professional
-     * @param name the name of the professional
-     * @param department the department of the professional
-     * @param heureDebut the beginning time
-     * @param heureFin the end time
-     * @param heureDebutPause the beginning break time
-     * @param heureFinPause the end break time
-     * @param joursDePresence the days of work
-     */
     public Professionnel(String name, Departement department, Time heureDebut, Time heureFin, Time heureDebutPause,
                          Time heureFinPause, String joursDePresence) {
         super(name);
@@ -54,20 +73,6 @@ public class Professionnel extends Personne {
         this.joursDePresence = joursDePresence;
     }
 
-    /**
-     * To create a professional
-     * @param nom the name of the professional
-     * @param prenom the lastname of the professional
-     * @param identifiant the username of the professional
-     * @param mail the email of the professional
-     * @param mdp the passwword of the professional
-     * @param department the department of the professional
-     * @param heureDebut the beginning time
-     * @param heureFin the end time
-     * @param heureDebutPause the beginning time of break
-     * @param heureFinPause the end time of break
-     * @param joursDePresence the day of work
-     */
     public Professionnel(String nom, String prenom, String identifiant, String mail, String mdp, Departement department,
                          Time heureDebut, Time heureFin, Time heureDebutPause, Time heureFinPause,
                          String joursDePresence) {
@@ -80,21 +85,6 @@ public class Professionnel extends Personne {
         this.joursDePresence = joursDePresence;
     }
 
-    /**
-     * To create a professional
-     * @param id the professional id
-     * @param nom the name of the professional
-     * @param prenom the lastname of the professional
-     * @param identifiant the username of the professional
-     * @param mail the email of the professional
-     * @param mdp the password of the professional
-     * @param department the department of the professional
-     * @param heureDebut the beginning time of the work day
-     * @param heureFin the end time of the work day
-     * @param heureDebutPause the beginning break time
-     * @param heureFinPause the end break time
-     * @param joursDePresence the day of work
-     */
     public Professionnel(Long id, String nom, String prenom, String identifiant, String mail, String mdp,
                          Departement department, Time heureDebut, Time heureFin, Time heureDebutPause,
                          Time heureFinPause, String joursDePresence) {
@@ -108,8 +98,8 @@ public class Professionnel extends Personne {
     }
 
     /**
-     * To get the department
-     * @return the department of the professional
+     * To get the department of the professional
+     * @return a department
      */
     @ManyToOne
     public Departement getDepartement() {
@@ -118,15 +108,15 @@ public class Professionnel extends Personne {
 
     /**
      * To set the department of the professional
-     * @param departement the department set
+     * @param departement a department
      */
     public void setDepartement(Departement departement) {
         this.departement = departement;
     }
 
     /**
-     * To get the list of rdv of the professional
-     * @return
+     * To get the list of rdvs of the professional
+     * @return a list of rdvs
      */
     @OneToMany(mappedBy = "professionnel", cascade = CascadeType.PERSIST)
     @JsonIgnore
@@ -135,94 +125,96 @@ public class Professionnel extends Personne {
     }
 
     /**
-     * To set rdv for the professional
-     * @param rdvs the rdv set
+     * To set a list of rdvs for the professional
+     * @param rdvs a list of rdvs
      */
     public void setRdvs(List<Rdv> rdvs){
         this.rdvs = rdvs;
     }
+
     /**
-    * To get the beginning time
-    */
+     * To get the start time of the professional
+     * @return a time
+     */
     public Time getHeureDebut() {
         return heureDebut;
     }
 
     /**
-     * To set the beginning time
-     * @param heureDebut the beginning time of the work day
+     * To set the start time of the professional
+     * @param heureDebut Time of the start time of the professional
      */
     public void setHeureDebut(Time heureDebut) {
         this.heureDebut = heureDebut;
     }
 
     /**
-     * To get the end time
-     * @return the end time
+     * To get the end time of the professional
+     * @return a time
      */
     public Time getHeureFin() {
         return heureFin;
     }
 
     /**
-     * To set the end time of the day
-     * @param heureFin the end time of work day
+     * To set the end time of the professional
+     * @param heureFin Time of the end time of the professional
      */
     public void setHeureFin(Time heureFin) {
         this.heureFin = heureFin;
     }
 
     /**
-     * To get the beginning time of the breal
-     * @return the beginning time break
+     * To get the break start time of the professional
+     * @return a time
      */
     public Time getHeureDebutPause() {
         return heureDebutPause;
     }
 
     /**
-     * To set beginning time break
-     * @param heureDebutPause the beginning time break
+     * To set the break start time of the professional
+     * @param heureDebutPause Time of the break start time of the professional
      */
     public void setHeureDebutPause(Time heureDebutPause) {
         this.heureDebutPause = heureDebutPause;
     }
 
     /**
-     * To get the end time break
-     * @return the end time break
+     * To get the break end time of the professional
+     * @return a time
      */
     public Time getHeureFinPause() {
         return heureFinPause;
     }
 
     /**
-     * To set end time break
-     * @param heureFinPause the end time break
+     * To set the break end time of the professional
+     * @param heureFinPause Time of the break end time of the professional
      */
     public void setHeureFinPause(Time heureFinPause) {
         this.heureFinPause = heureFinPause;
     }
 
     /**
-     * To get time of work day
-     * @return the day of works for the professional
+     * To get days of presence of the professional
+     * @return a string
      */
     public String getJoursDePresence() {
         return joursDePresence;
     }
 
     /**
-     * TO set work days
-     * @param joursDePresence the work days
+     * To set days of presence of the professional
+     * @param joursDePresence a string of binary
      */
     public void setJoursDePresence(String joursDePresence) {
         this.joursDePresence = joursDePresence;
     }
 
     /**
-     * To get the list of type fo rdv for the professional
-     * @return the type fo rdv
+     * To get the list of type of rdv of the professional
+     * @return a list of type of rdv
      */
     @OneToMany(mappedBy = "professionnel", cascade = CascadeType.PERSIST)
     @JsonIgnore
@@ -231,16 +223,16 @@ public class Professionnel extends Personne {
     }
 
     /**
-     * To set the type of rdv for the professional
-     * @param typeDeRdv the type of rdv
+     * To set the list of type of rdv of the professional
+     * @param typeDeRdv a list of type of rdv
      */
     public void setTypeDeRdv(List<TypeRdv> typeDeRdv) {
         this.typeDeRdv = typeDeRdv;
     }
 
     /**
-     * To display data on the professional
-     * @return a String of data on the professional
+     * To get a string to describe the professional with its data
+     * @return a string
      */
     @Override
     public String toString() {

@@ -16,46 +16,52 @@ import java.util.Date;
 
 public class Rdv {
 
+    /**
+     * The id of the rdv
+     */
     private Long id;
-    private TypeRdv typeRdv;
-    private Professionnel professionnel;
-    private Utilisateur utilisateur;
-    private Date dateDebut;
-    private Date dateFin;
 
     /**
-     * To instantiate rdv
+     * The type of rdv of the rdv
      */
+    private TypeRdv typeRdv;
+
+    /**
+     * The professional of the rdv
+     */
+    private Professionnel professionnel;
+
+    /**
+     * The user of the rdv
+     */
+    private Utilisateur utilisateur;
+
+    /**
+     * The start date of the rdv
+     */
+    private Date dateDebut;
+
+    /**
+     * The end date of the rdv
+     */
+    private Date dateFin;
+
     public Rdv() {
     }
 
-    /**
-     * To create rdv on the database
-     * @param typeRdv the type of rdv
-     * @param professionnel the professional
-     * @param utilisateur the user
-     * @param dateDebut the beginning date
-     */
     public Rdv(TypeRdv typeRdv, Professionnel professionnel, Utilisateur utilisateur, Date dateDebut) {
         this.typeRdv = typeRdv;
         this.professionnel = professionnel;
         this.utilisateur = utilisateur;
         this.dateDebut = dateDebut;
 
+        // dateFin = dateDebut + typeRdv.getDuree()
         Calendar c = Calendar.getInstance();
         c.setTime(dateDebut);
         c.add(Calendar.MINUTE, typeRdv.getDuree());
         this.dateFin = c.getTime();
     }
 
-    /**
-     * To create rdv on the database
-     * @param id the rdv id
-     * @param typeRdv the type of rdv
-     * @param professionnel the professional
-     * @param utilisateur the user
-     * @param dateDebut the beginning date of the rdv
-     */
     public Rdv(Long id, TypeRdv typeRdv, Professionnel professionnel, Utilisateur utilisateur, Date dateDebut) {
         this.id = id;
         this.typeRdv = typeRdv;
@@ -70,8 +76,8 @@ public class Rdv {
     }
 
     /**
-     * To get the id of the rdv on the database
-     * @return the id
+     * To get the id of the rdv
+     * @return the id of the rdv
      */
     @Id
     @GeneratedValue(generator="generatorIdRdv")
@@ -80,8 +86,8 @@ public class Rdv {
     }
 
     /**
-     * To set the id
-     * @param id the id to set
+     * To set the id of the rdv
+     * @param id a long id
      */
     public void setId(Long id) {
         this.id = id;
@@ -89,7 +95,7 @@ public class Rdv {
 
     /**
      * To get the type of rdv of the rdv
-     * @return the type of rdv
+     * @return a type of rdv
      */
     @ManyToOne
     public TypeRdv getTypeRdv() {
@@ -98,7 +104,7 @@ public class Rdv {
 
     /**
      * To set the type of rdv of the rdv
-     * @param typeRdv the type of rdv
+     * @param typeRdv a type of rdv
      */
     public void setTypeRdv(TypeRdv typeRdv) {
         this.typeRdv = typeRdv;
@@ -106,7 +112,7 @@ public class Rdv {
 
     /**
      * To get the professional of the rdv
-     * @return the professional
+     * @return a professional
      */
     @ManyToOne
     public Professionnel getProfessionnel() {
@@ -115,7 +121,7 @@ public class Rdv {
 
     /**
      * To set the professional of the rdv
-     * @param professionnel the professional
+     * @param professionnel a professional
      */
     public void setProfessionnel(Professionnel professionnel) {
         this.professionnel = professionnel;
@@ -123,7 +129,7 @@ public class Rdv {
 
     /**
      * To get the user of the rdv
-     * @return the user
+     * @return a user
      */
     @ManyToOne
     public Utilisateur getUtilisateur() {
@@ -132,23 +138,23 @@ public class Rdv {
 
     /**
      * To set the user of the rdv
-     * @param utilisateur the user
+     * @param utilisateur a user
      */
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
 
     /**
-     * To get the beginning date of the rdv
-     * @return the beginning date
+     * To get the start date of the rdv
+     * @return a date
      */
     public Date getDateDebut() {
         return dateDebut;
     }
 
     /**
-     * To set the beginning date of the rdv
-     * @param dateDebut the beginning date
+     * To set the start date of the rdv
+     * @param dateDebut the start date of the rdv
      */
     public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
@@ -156,7 +162,7 @@ public class Rdv {
 
     /**
      * To get the end date of the rdv
-     * @return the end date of the rdv
+     * @return a date
      */
     public Date getDateFin() {
         return dateFin;
@@ -164,15 +170,15 @@ public class Rdv {
 
     /**
      * To set the end date of the rdv
-     * @param dateFin the end date
+     * @param dateFin the end date of the rdv
      */
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
 
     /**
-     * To display data on the rdv
-     * @return a String of data on the rdv
+     * To get a string to describe the rdv with its data
+     * @return a string
      */
     @Override
     public String toString() {

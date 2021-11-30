@@ -15,9 +15,9 @@ public class ProfessionnelResource {
     ProfessionnelDao professionnelDao;
 
     /**
-     * to get a professional by the id
-     * @param profId the professional id
-     * @return the professional
+     * To search a professional by id
+     * @param profId the id of a professional
+     * @return a professional
      */
     @GetMapping(path="/{profId}",produces = "application/json")
     public Professionnel getProfById(@PathVariable("profId") Long profId)  {
@@ -25,8 +25,8 @@ public class ProfessionnelResource {
     }
 
     /**
-     * to get the list of professional on the database
-     * @return a list of the professional on the database
+     * To get the list of professionals from the database
+     * @return a list of professionals
      */
     @GetMapping(path="/listProf",produces = "application/json")
     public List<Professionnel> getProfs()  {
@@ -34,9 +34,9 @@ public class ProfessionnelResource {
     }
 
     /**
-     * to get a list of professionals by the name
-     * @param nomProf the name of professionals
-     * @return a list of professionals by name
+     * To get the list of professionals from the database by name
+     * @param nomProf the name of a professional
+     * @return a list of Professionnel
      */
     @GetMapping(path="/listProf/{nomProf}",produces = "application/json")
     public List<Professionnel> getProfsByName(@PathVariable("nomProf") String nomProf)  {
@@ -44,9 +44,9 @@ public class ProfessionnelResource {
     }
 
     /**
-     * to add a professional to the database
-     * @param prof the professional to add
-     * @return the http response to get the status of the request
+     * To add a professional in the database
+     * @param prof a professional
+     * @return a http response to get the status of the request
      */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Professionnel> addProfessionnel(
@@ -56,9 +56,9 @@ public class ProfessionnelResource {
     }
 
     /**
-     * to update a professional to the database
-     * @param prof the professional to add
-     * @return the http response to get the status of the request
+     * To update a professional in the database
+     * @param prof a professional
+     * @return a http response to get the status of the request
      */
     @PutMapping(consumes = "application/json")
     public ResponseEntity<Professionnel> updateProfessionnel(
@@ -68,9 +68,9 @@ public class ProfessionnelResource {
     }
 
     /**
-     * to delete a professional from the database
-     * @param profId the professional id
-     * @return the http response to get the status of the request
+     * To delete a professional in the database by an id
+     * @param profId the id of a professional
+     * @return a http response to get the status of the request
      */
     @DeleteMapping(path="/{profId}")
     public ResponseEntity<Void> deleteProfById(@PathVariable("profId") Long profId)  {

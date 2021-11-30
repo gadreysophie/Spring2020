@@ -22,9 +22,9 @@ public class RdvResource {
     TypeRdvDao typeRdvDao;
 
     /**
-     * to get the rdv by the id
-     * @param rdvId the id of the rdv
-     * @return the rdv
+     * To search a rdv by id
+     * @param rdvId the id of a rdv
+     * @return a rdv
      */
     @GetMapping(path="/{rdvId}",produces = "application/json")
     public Rdv getRdvById(@PathVariable("rdvId") Long rdvId)  {
@@ -32,8 +32,8 @@ public class RdvResource {
     }
 
     /**
-     * to get the list of rdv from the database
-     * @return the list of rdv
+     * To get the list of rdvs from the database
+     * @return a list of rdvs
      */
     @GetMapping(path="/listRdv",produces = "application/json")
     public List<Rdv> getRdvs()  {
@@ -41,9 +41,9 @@ public class RdvResource {
     }
 
     /**
-     * to get a rdv by the date and the professional
-     * @param rdvsParProfessionnelEtDate the date and professional
-     * @return a list of rdv by date and professional
+     * To get the list of rdvs by date and professional from the database
+     * @param rdvsParProfessionnelEtDate a date and a professional
+     * @return a list of rdvs
      */
     @GetMapping(path="/listRdvParProfEtDate/", produces = "application/json")
     public List<Rdv> getRdvsParProfEtDate(@RequestBody RdvsParProfessionnelEtDateDto rdvsParProfessionnelEtDate)  {
@@ -56,9 +56,9 @@ public class RdvResource {
     }
 
     /**
-     * to add a rdv on the database
-     * @param rdv the rdv
-     * @return the http response to get the status of the request
+     * To add a rdv in the database
+     * @param rdv a rdv
+     * @return a http response to get the status of the request
      */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Rdv> addRdv(
@@ -68,9 +68,9 @@ public class RdvResource {
     }
 
     /**
-     * to update a rdv on the database
+     * To update a rdv in the database
      * @param rdv the rdv
-     * @return the http response to get the status of the request
+     * @return a http response to get the status of the request
      */
     @PutMapping(consumes = "application/json")
     public ResponseEntity<Rdv> updateRdv(
@@ -80,9 +80,9 @@ public class RdvResource {
     }
 
     /**
-     * to delete a rdv by the id
-     * @param rdvId the id of the rdv
-     * @return the http response to get the status of the request
+     * To delete a rdv in the database by id
+     * @param rdvId the id of a rdv
+     * @return a http response to get the status of the request
      */
     @DeleteMapping(path="/{rdvId}")
     public ResponseEntity<Void>  deleteRdvById(@PathVariable("rdvId") Long rdvId)  {

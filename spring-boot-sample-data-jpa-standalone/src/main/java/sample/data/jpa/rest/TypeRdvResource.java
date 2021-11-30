@@ -15,9 +15,9 @@ public class TypeRdvResource {
     TypeRdvDao typeRdvDao;
 
     /**
-     * to get the type of rdv by id
+     * To search a type of rdv by id
      * @param typeRdvId the id of the type of rdv
-     * @return the type of rdv
+     * @return a type of rdv
      */
     @GetMapping(path="/{typeRdvId}",produces = "application/json")
     public TypeRdv getTypeRdvById(@PathVariable("typeRdvId") Long typeRdvId)  {
@@ -25,9 +25,9 @@ public class TypeRdvResource {
     }
 
     /**
-     * to get the minimum length of a rdv for a professional
-     * @param profId the professional id
-     * @return the length of a rdv for the professional
+     * To get the minimum duration of a rdv for a professional by its id
+     * @param profId the id of a professional
+     * @return a duration of rdv
      */
     @GetMapping(path="/minTypeRdv/{profId}",produces = "application/json")
     public Integer getMinDureeTypeRdvByProfId(@PathVariable("profId") Long profId)  {
@@ -35,9 +35,9 @@ public class TypeRdvResource {
     }
 
     /**
-     * to get the list of type of rdv by professional
-     * @param profId the professional id
-     * @return the list of type of rdv for this professional
+     * To get the list of types of rdv for a professional by its id
+     * @param profId the id of a professional
+     * @return a list of types of rdv
      */
     @GetMapping(path="/listTypeRdv/{profId}",produces = "application/json")
     public List<TypeRdv> getListTypeRdvsParProfId(@PathVariable("profId") Long profId)  {
@@ -45,8 +45,8 @@ public class TypeRdvResource {
     }
 
     /**
-     * to get the list of type of rdv
-     * @return the list of type of rdv
+     * To get the list of types of rdv
+     * @return a list of types of rdv
      */
     @GetMapping(path="/listTypeRdv",produces = "application/json")
     public List<TypeRdv> getTypeRdvs()  {
@@ -54,9 +54,9 @@ public class TypeRdvResource {
     }
 
     /**
-     * to add a type of rdv on the database
-     * @param typeRdv type of rdv
-     * @return the http response to get the status of the request
+     * To add a type of rdv in the database
+     * @param typeRdv a type of rdv
+     * @return a http response to get the status of the request
      */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<TypeRdv> addTypeRdv(
@@ -66,9 +66,9 @@ public class TypeRdvResource {
     }
 
     /**
-     * to update a type of rdv on the database
-     * @param typeRdv type of rdv
-     * @return the http response to get the status of the request
+     * To update a type of rdv in the database
+     * @param typeRdv a type of rdv
+     * @return a http response to get the status of the request
      */
     @PutMapping(consumes = "application/json")
     public ResponseEntity<TypeRdv> updateTypeRdv(
@@ -78,9 +78,9 @@ public class TypeRdvResource {
     }
 
     /**
-     * to delete a type of rdv by id
+     * To delete a type of rdv by its id in the database
      * @param typeRdvId the id of the type of rdv
-     * @return the http response to get the status of the request
+     * @return a http response to get the status of the request
      */
     @DeleteMapping(path="/{typeRdvId}")
     public ResponseEntity<Void>  deleteTypeRdvById(@PathVariable("typeRdvId") Long typeRdvId)  {

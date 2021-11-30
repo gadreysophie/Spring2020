@@ -28,11 +28,11 @@ public class RdvService {
     UtilisateurDao utilisateurDao;
 
     /**
-     * To get the list of availabilities of a professional in function of his saved availabilities
+     * To get the list of available rdvs of a professional in function of a date and a type of rdv
      * @param creneauxDispoParProfEtDateEtTypeRdv DTO CreneauxDispoParProfEtDateEtTypeRdv
      * @param rdvDao rdvDao
      * @param typeRdvDao typeRdvDao
-     * @return the list of availabilities by professional for a date and type of rdv
+     * @return a list of rdvs
      */
     public static List<Rdv> listCreneauxDispo(CreneauxDispoParProfEtDateEtTypeRdvDto creneauxDispoParProfEtDateEtTypeRdv, RdvDao rdvDao, TypeRdvDao typeRdvDao){
         Professionnel prof = creneauxDispoParProfEtDateEtTypeRdv.getProfessionnel();
@@ -105,11 +105,11 @@ public class RdvService {
     }
 
     /**
-     * Build the table of availabilities of the professional
-     * @param debutRdv begin hour of the rdv
+     * Build a table of available time slots
+     * @param debutRdv start hour of the rdv
      * @param finRdv end hour of the rdv
-     * @param tabDebutCreneau table of the beginning hours
-     * @param tabFinCreneau table of the end hours
+     * @param tabDebutCreneau table of the start hours of rdvs
+     * @param tabFinCreneau table of the end hours of rdvs
      */
     private static void constructTabOfTempsLibre(Time debutRdv, Time finRdv, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
         Time time1;
@@ -143,13 +143,13 @@ public class RdvService {
     }
 
     /**
-     * Build the table of availabilities for a professional in function of the length of a rdv
-     * @param tabDebutTempsLibre table of the beginning date of availability
-     * @param tabFinTempsLibre table of the end date of the availability
-     * @param dureeRdv length of the rdv
-     * @param minduree minimum of the length of the rdv by professional
-     * @param tabDebutCreneau table of the beginning dates
-     * @param tabFinCreneau table of the end dates
+     * Build lists of available time slots
+     * @param tabDebutTempsLibre list of start time available slots
+     * @param tabFinTempsLibre list of end time available slots
+     * @param dureeRdv duration of the rdv
+     * @param minduree minimum duration of a rdv for the professional
+     * @param tabDebutCreneau list of start time of rdv
+     * @param tabFinCreneau list of end time of rdv
      */
     private static void constructTabOfCreneaux(List<Time> tabDebutTempsLibre, List<Time> tabFinTempsLibre, Integer dureeRdv, Integer minduree, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
         for (int i = 0; i < tabDebutTempsLibre.size(); i++) {
@@ -176,7 +176,7 @@ public class RdvService {
     }
 
     /**
-     * To create a rdv on the database for example
+     * To create false data of rdvs in the database
      * @throws ParseException exception
      */
     public void createFalseRdvs() throws ParseException {
@@ -204,7 +204,7 @@ public class RdvService {
     }
 
     /**
-     * To get the list of rdv for example
+     * To print the list of rdvs
      * @throws ParseException exception
      */
     public void listRdvTest() throws ParseException {
@@ -222,7 +222,7 @@ public class RdvService {
     }
 
     /**
-     * the list of availabilities
+     * To print the list of available time slots for a date, a professional and a date
      * @throws ParseException exception
      */
     public void listCreneauxDispoTest() throws ParseException {

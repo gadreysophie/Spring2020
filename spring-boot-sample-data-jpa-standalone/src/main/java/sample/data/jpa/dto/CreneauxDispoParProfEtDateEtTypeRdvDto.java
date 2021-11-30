@@ -7,18 +7,23 @@ import java.util.Date;
 
 public class CreneauxDispoParProfEtDateEtTypeRdvDto {
 
+    /**
+     * The professional for the rdv
+     */
     private Professionnel professionnel;
+
+    /**
+     * Date of day for the rdv
+     */
     private Date date;
+
+    /**
+     * Type of rdv for the rdv
+     */
     private TypeRdv typeRdv;
 
     public CreneauxDispoParProfEtDateEtTypeRdvDto(){}
 
-    /**
-     * Available schedule by professional, date and type of rdv.
-     * @param professionnel the professional
-     * @param date the date of the rdv
-     * @param typeRdv the type of rdv
-     */
     public CreneauxDispoParProfEtDateEtTypeRdvDto(Professionnel professionnel, Date date, TypeRdv typeRdv){
         this.professionnel = professionnel;
         this.date = date;
@@ -26,29 +31,29 @@ public class CreneauxDispoParProfEtDateEtTypeRdvDto {
     }
 
     /**
-     * To get the professional
-     * @return the professional
+     * To get the professional for the rdv
+     * @return a professional
      */
     @JsonProperty("Professionnel")
     public Professionnel getProfessionnel() { return professionnel; }
 
     /**
-     * To set the professional
-     * @param value the professional to set
+     * To set the professional for the rdv
+     * @param value a professional
      */
     @JsonProperty("Professionnel")
     public void setProfessionnel(Professionnel value) { this.professionnel = value; }
 
     /**
-     * To get the date of the rdv
-     * @return the date to check
+     * To get the date of day for the rdv
+     * @return a date
      */
     @JsonProperty("Date")
     public Date getDate() { return date; }
 
     /**
-     * To set the date
-     * @param value the date
+     * To set the date of day for the rdv
+     * @param value a date
      */
     @JsonProperty("Date")
     public void setDate(Date value) {
@@ -56,16 +61,18 @@ public class CreneauxDispoParProfEtDateEtTypeRdvDto {
     }
 
     /**
-     * To get the type of rdv of the schedule
-     * @return the type of rdv
+     * To get the type of rdv for the rdv
+     * @return a type of rdv
      */
     @JsonProperty("TypeRdv")
     public TypeRdv getTypeRdv() { return typeRdv; }
 
     /**
-     * To set the type of rdv
-     * @param typeRdv
+     * To set the type of rdv for the rdv
+     * @param typeRdv a type of rdv
      */
     @JsonProperty("TypeRdv")
-    public void setTypeRdv(TypeRdv typeRdv) { this.typeRdv = typeRdv; }
+    public void setTypeRdv(TypeRdv typeRdv) {
+        this.typeRdv = typeRdv;
+    }
 }

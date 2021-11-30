@@ -10,35 +10,43 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "personne")
 public abstract class Personne {
 
+    /**
+     * The id of the person
+     */
     private Long id;
-    private String nom;
-    private String identifiant;
-    private String mdp;
-    private String mail;
-    private String prenom;
 
     /**
-     * To instantiate person
+     * The last name of the person
      */
+    private String nom;
+
+    /**
+     * The login of the person
+     */
+    private String identifiant;
+
+    /**
+     * The password of the person
+     */
+    private String mdp;
+
+    /**
+     * The E-mail of the person
+     */
+    private String mail;
+
+    /**
+     * The first name of the person
+     */
+    private String prenom;
+
     public Personne(){
     }
 
-    /**
-     * To create person on the database
-     * @param nom the name of the person
-     */
     public Personne(String nom) {
         this.nom = nom;
     }
 
-    /**
-     * To create a person on the database
-     * @param nom the name of the person
-     * @param prenom the lastname of the person
-     * @param identifiant the login of the person
-     * @param mail the email of the person
-     * @param mdp the password of the person
-     */
     public Personne(String nom, String prenom, String identifiant, String mail, String mdp) {
         this.nom = nom;
         this.prenom = prenom;
@@ -47,15 +55,6 @@ public abstract class Personne {
         this.mdp = mdp;
     }
 
-    /**
-     * To create a person on the database
-     * @param id the id of the person
-     * @param nom the name of the person
-     * @param prenom the lastname of the person
-     * @param identifiant the login of the person
-     * @param mail the email of the person
-     * @param mdp the password of the person
-     */
     public Personne(Long id, String nom, String prenom, String identifiant, String mail, String mdp) {
         this.id = id;
         this.nom = nom;
@@ -78,39 +77,39 @@ public abstract class Personne {
 
     /**
      * To set the id of the person
-     * @param id the Long id
+     * @param id a long id
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * To get the name of the person
-     * @return the String name
+     * To get the last name of the person
+     * @return a string
      */
     public String getNom() {
         return nom;
     }
 
     /**
-     * To set the name of the person
-     * @param nom the name
+     * To set the last name of the person
+     * @param nom a string of the last name
      */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
     /**
-     * To get the lastname of the person
-     * @return the String lastname
+     * To get the first name of the person
+     * @return a string
      */
     public String getPrenom() {
         return prenom;
     }
 
     /**
-     * To set the lastname of the person
-     * @param prenom the lastname to set
+     * To set the first name  of the person
+     * @param prenom a string of the first name
      */
     public void setPrenom(String prenom) {
         this.prenom = prenom;
@@ -118,7 +117,7 @@ public abstract class Personne {
 
     /**
      * To get the login of the person
-     * @return the String login which is unique
+     * @return a string
      */
     @Column(unique = true)
     public String getIdentifiant() {
@@ -127,7 +126,7 @@ public abstract class Personne {
 
     /**
      * To set the login of the person
-     * @param identifiant the String login
+     * @param identifiant a string of a login
      */
     public void setIdentifiant(String identifiant) {
         this.identifiant = identifiant;
@@ -135,7 +134,7 @@ public abstract class Personne {
 
     /**
      * To get the password of the person
-     * @return the String password
+     * @return a string
      */
     public String getMdp() {
         return mdp;
@@ -143,15 +142,15 @@ public abstract class Personne {
 
     /**
      * To set the password of the person
-     * @param mdp the String password
+     * @param mdp a string of a password
      */
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
 
     /**
-     * To get of email of the person
-     * @return to String email of the person which is unique
+     * To get the E-mail of the person
+     * @return a string
      */
     @Column(unique = true)
     public String getMail() {
@@ -159,8 +158,8 @@ public abstract class Personne {
     }
 
     /**
-     * To set the email of the person
-     * @param mail the String email of the person
+     * To set the E-mail of the person
+     * @param mail a string of an E-mail
      */
     public void setMail(String mail) {
         this.mail = mail;

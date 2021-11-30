@@ -12,7 +12,7 @@ public class UtilisateurService {
     UtilisateurDao utilisateurDao;
 
     /**
-     * To create user on the database
+     * To create false data of users in the database
      */
     public void createFalseUtilisateurs() {
         int numOfUsers = utilisateurDao.listUtilisateurs().size();
@@ -23,7 +23,7 @@ public class UtilisateurService {
     }
 
     /**
-     * To get the list of database
+     * To print the list of users
      */
     public void listUtilisateursTest() {
         List<Utilisateur> resultList = utilisateurDao.listUtilisateurs();

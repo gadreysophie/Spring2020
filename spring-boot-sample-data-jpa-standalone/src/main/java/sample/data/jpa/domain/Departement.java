@@ -15,20 +15,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 )
 public class Departement {
 
+    /**
+     * The id of the department
+     */
     private Long id;
-    private String nom;
-    private List<Professionnel> professionnels = new ArrayList<>();
 
     /**
-     * To create the instance of department for the database
+     * The name of the department
      */
+    private String nom;
+
+    /**
+     * The list of Professionnel of the departement
+     */
+    private List<Professionnel> professionnels = new ArrayList<>();
+
     public Departement() {
     }
 
-    /**
-     * To create the Department on the database
-     * @param nom the name of the department
-     */
     public Departement(String nom) {
         this.nom = nom;
     }
@@ -47,15 +51,17 @@ public class Departement {
     public Long getId() {
         return id;
     }
+
     /**
     * To set the id of the department
+     * @param id a long id
     */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * To get the name
+     * To get the name of the department
      * @return the name of the department
      */
     @Column(unique = true)
@@ -64,7 +70,7 @@ public class Departement {
     }
 
     /**
-     * To set the name
+     * To set the name of the department
      * @param nom the name of the department
      */
     public void setNom(String nom) {
@@ -72,8 +78,8 @@ public class Departement {
     }
 
     /**
-     * To display data on the department
-     * @return a String of data on the department
+     * To get a string to describe the departement with its data
+     * @return a string
      */
     @Override
     public String toString() {
@@ -81,7 +87,7 @@ public class Departement {
     }
 
     /**
-     * To get the list of professionals who are in the department
+     * To get the list of professionals of the department
      * @return a list of professionals
      */
     @OneToMany(mappedBy = "departement", cascade = CascadeType.PERSIST)
@@ -91,8 +97,8 @@ public class Departement {
     }
 
     /**
-     * To set the list of professionals that are in the department
-     * @param professionnels the list of professionals
+     * To set the list of professionals of the department
+     * @param professionnels a list of professionals
      */
     public void setProfessionnels(List<Professionnel> professionnels) {
         this.professionnels = professionnels;

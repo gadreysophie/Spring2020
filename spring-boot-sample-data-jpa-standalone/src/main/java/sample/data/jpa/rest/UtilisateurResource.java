@@ -16,9 +16,9 @@ public class UtilisateurResource {
     UtilisateurDao utilisateurDao;
 
     /**
-     * to get the user by the id
+     * To search a user by id
      * @param userId the id of the user
-     * @return the user
+     * @return a user
      */
     @GetMapping(path="/{userId}",produces = "application/json")
     public Utilisateur getUserById(@PathVariable("userId") Long userId)  {
@@ -26,8 +26,8 @@ public class UtilisateurResource {
     }
 
     /**
-     * to get the list of user from the database
-     * @return the list of user
+     * To get the list of users
+     * @return a list of users
      */
     @GetMapping(path="/listUser",produces = "application/json")
     public List<Utilisateur> getUsers()  {
@@ -35,8 +35,8 @@ public class UtilisateurResource {
     }
 
     /**
-     * to add a user on the database
-     * @param user the user to add
+     * To add a user in the database
+     * @param user a user
      * @return the http response to get the status of the request
      */
     @PostMapping(consumes = "application/json")
@@ -46,9 +46,9 @@ public class UtilisateurResource {
     }
 
     /**
-     * to update a user on the database
-     * @param user the user to add
-     * @return the http response to get the status of the request
+     * To update a user in the database
+     * @param user a user
+     * @return a http response to get the status of the request
      */
     @PutMapping(consumes = "application/json")
     public ResponseEntity<Utilisateur> updateUser(@RequestBody Utilisateur user){
@@ -57,9 +57,9 @@ public class UtilisateurResource {
     }
 
     /**
-     * to delete a user from the database
+     * To delete a user by its id in the database
      * @param userId the id of the user
-     * @return the http response to get the status of the request
+     * @return a http response to get the status of the request
      */
     @DeleteMapping(path="/{userId}")
     public ResponseEntity<Void>  deleteUserById(@PathVariable("userId") Long userId)  {

@@ -15,9 +15,9 @@ public class DepartementResource {
     DepartementDao departementDao;
 
     /**
-     * to get the departement searching by id
-     * @param deptId the id of the departement
-     * @return the department
+     * To search a department by id
+     * @param deptId the id of a departement
+     * @return a department
      */
     @GetMapping(path="/{deptId}",produces = "application/json")
     public Departement getDepartementById(@PathVariable("deptId") Long deptId)  {
@@ -25,9 +25,9 @@ public class DepartementResource {
     }
 
     /**
-     * to add a department in the database
-     * @param dept the department to add in the database
-     * @return the http response to get the status of the request
+     * To add a department in the database
+     * @param dept a department
+     * @return a http response to get the status of the request
      */
     @PostMapping(consumes = "application/json")
     public ResponseEntity<Departement> addDepartement(
@@ -37,9 +37,9 @@ public class DepartementResource {
     }
 
     /**
-     * to update a department in the database
-     * @param dept the department to add in the database
-     * @return the http response to get the status of the request
+     * To update a department in the database
+     * @param dept a department
+     * @return a http response to get the status of the request
      */
     @PutMapping(consumes = "application/json")
     public ResponseEntity<Departement> updateDepartement(
@@ -49,8 +49,8 @@ public class DepartementResource {
     }
 
     /**
-     * to get the list of the department that are in the database
-     * @return a list of department
+     * To get the list of departments from the database
+     * @return a list of departments
      */
     @GetMapping(path="/listDept",produces = "application/json")
     public List<Departement> getDepts()  {
@@ -58,9 +58,9 @@ public class DepartementResource {
     }
 
     /**
-     * to delete a department from the database by the id
-     * @param deptId the department id
-     * @return the http response to get the status of the request
+     * To delete a department in the database by an id
+     * @param deptId the id of a department
+     * @return a http response to get the status of the request
      */
     @DeleteMapping(path="/{deptId}")
     public ResponseEntity<Void> deleteDepartById(@PathVariable("deptId") Long deptId)  {
