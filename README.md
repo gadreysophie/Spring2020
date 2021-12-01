@@ -13,11 +13,11 @@ De plus, un utilisateur souhaitant consulter un professionnel pourra lui aussi s
 
 Lien vers le dépôt GIT : https://github.com/gadreysophie/tpjpa2021
 
-### *TP 2 Utilisation de REST*
+### *TP 2 Utilisation de Rest*
 
 Lien vers le dépôt GIT : https://github.com/gadreysophie/JaxRSOpenAPI
 
-### *TP 3 Utilisation de SPRING*
+### *TP 3 Utilisation de Spring*
 
 #### *PARTIE 1*
 
@@ -92,7 +92,7 @@ Ensuite, nous avons décidé de créer une classe TypeRdv dans le but de simplif
 <p style='text-align: justify;'>
 Ci-dessous, le diagramme UML que vous pouvez retrouver dans le répertoire resources (<a href="spring-boot-sample-data-jpa-standalone/src/main/resources">spring-boot-sample-data-jpa-standalone/src/main/resources</a>) sous le nom de 'Diagramme UML SG ELC.png'</p>
 
-![](spring-boot-sample-data-jpa-standalone/src/main/resources/Diagramme UML SG ELC.png)
+![](https://github.com/gadreysophie/Spring2020/blob/master/spring-boot-sample-data-jpa-standalone/src/main/resources/Diagramme%20UML%20SG%20ELC.png?raw=true)
 
 ## 4 - Structure
 
